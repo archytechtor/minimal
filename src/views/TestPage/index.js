@@ -1,11 +1,11 @@
 import React from 'react';
 import {Tabs} from '@ui';
-import Buttons from '@views/TestPage/Buttons';
+import Buttons from './Buttons';
 
 const TestPage = () => {
   const tabs = [
     {
-      title: 'Buttons',
+      title: 'Button',
       content: <Buttons />
     },
     {

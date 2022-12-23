@@ -1,0 +1,110 @@
+@import '../../../styles/colors.scss';
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+
+  .controlBlock {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 8px;
+
+      .checkbox {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .colors {
+        display: flex;
+        gap: 10px;
+        width: 300px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+
+        .colorBox {
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          border-radius: 8px;
+          background-color: $white-5;
+
+          &.red {
+            background-color: $red-light;
+          }
+
+          &.volcano {
+            background-color: $volcano-light;
+          }
+
+          &.orange {
+            background-color: $orange-light;
+          }
+
+          &.gold {
+            background-color: $gold-light;
+          }
+
+          &.yellow {
+            background-color: $yellow-light;
+          }
+
+          &.lime {
+            background-color: $lime-light;
+          }
+
+          &.green {
+            background-color: $green-light;
+          }
+
+          &.cyan {
+            background-color: $cyan-light;
+          }
+
+          &.blue {
+            background-color: $blue-light;
+          }
+
+          &.deepblue {
+            background-color: $deepblue-light;
+          }
+
+          &.purple {
+            background-color: $purple-light;
+          }
+
+          &.pink {
+            background-color: $pink-light;
+          }
+        }
+      }
+    }
+  }
+
+  .demoBlock {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $black-15;
+    border-radius: 16px;
+    padding: 20px;
+  }
+}
