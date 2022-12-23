@@ -3,13 +3,18 @@ import {ROUTES} from '@utils';
 import {
   MainPage,
   AuthPage,
-  NotFoundPage
+  NotFoundPage,
+  TestPage
 } from '@views';
 
 const authRoutes = [
   {
     path: ROUTES.MAIN,
     element: <MainPage />
+  },
+  {
+    path: ROUTES.TEST,
+    element: <TestPage />
   }
 ];
 
