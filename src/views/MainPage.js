@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {magic} from '@utils';
+import {Button} from '@ui';
 
 const MainPage = ({logOut}) => (
   <div>
     {'MainPage'}
 
-    <button
-      type={'button'}
-      onClick={logOut}
-    >
+    <Button onClick={logOut}>
       {'Выйти'}
-    </button>
+    </Button>
   </div>
 );
 
