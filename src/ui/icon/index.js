@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {icons} from './svg';
 import ws from 'isomorphic-style-loader/withStyles';
-import s from './style.scss';
+import s from './icon.scss';
 
 const Icon = (props) => {
   const {
