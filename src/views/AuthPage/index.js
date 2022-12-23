@@ -11,7 +11,6 @@ const AuthPage = (props) => {
     password,
     setPassword,
     showPassword,
-    toggleShowPassword,
     isLogin,
     user,
     setIsLogin,
@@ -38,6 +37,7 @@ const AuthPage = (props) => {
         placeholder={'Пароль'}
       />
       <button
+        type={'button'}
         onClick={submit}
         disabled={loading}
       >
@@ -66,19 +66,20 @@ const AuthPage = (props) => {
   );
 };
 
-const mapStore = ({UserStore}) => ({
-  email: UserStore.email,
-  setEmail: UserStore.setEmail,
-  password: UserStore.password,
-  setPassword: UserStore.setPassword,
-  showPassword: UserStore.showPassword,
-  toggleShowPassword: UserStore.toggleShowPassword,
-  isLogin: UserStore.isLogin,
-  user: UserStore.user,
-  setIsLogin: UserStore.setIsLogin,
-  loading: UserStore.loading,
-  submit: UserStore.submit
-});
+const mapStore = ({UserStore}) => {
+  return {
+    email: UserStore.email,
+    setEmail: UserStore.setEmail,
+    password: UserStore.password,
+    setPassword: UserStore.setPassword,
+    showPassword: UserStore.showPassword,
+    isLogin: UserStore.isLogin,
+    user: UserStore.user,
+    setIsLogin: UserStore.setIsLogin,
+    loading: UserStore.loading,
+    submit: UserStore.submit
+  };
+};
 
 AuthPage.propTypes = {
   email: PropTypes.string,
@@ -86,7 +87,6 @@ AuthPage.propTypes = {
   password: PropTypes.string,
   setPassword: PropTypes.func,
   showPassword: PropTypes.bool,
-  toggleShowPassword: PropTypes.func,
   isLogin: PropTypes.bool,
   user: PropTypes.object,
   setIsLogin: PropTypes.func,

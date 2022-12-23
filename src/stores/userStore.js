@@ -71,22 +71,20 @@ export default class UserStore {
       this.setUser(user);
       this.reset();
       this.setLoading(false);
-    } catch(e) {
+    } catch(err) {
       this.setLoading(false);
-      this.errorHandler(e);
+      this.errorHandler(err);
     }
   };
 
-  checkAuth = async() => {
+  checkAuth = () => {
     onAuthStateChanged(auth, (user) => {
       this.setUser(user);
       this.setLoading(false);
     });
   };
 
-  logOut = () => {
-    return signOut(auth);
-  };
+  logOut = () => signOut(auth);
 
   reset = () => {
     this.email = '';
@@ -94,8 +92,6 @@ export default class UserStore {
   };
 
   errorHandler = (error) => {
-    console.log({error});
-
     if (!error.code) {
       return message({
         type: 'error',
@@ -106,8 +102,10 @@ export default class UserStore {
     const errors = {
       'auth/invalid-email': 'Введён некорректный email',
       'auth/wrong-password': 'Введён некорректный пароль',
+      // eslint-disable-next-line max-len
       'auth/user-not-found': 'Пользователь с таким email не найден. Возможно, пользователь был удален',
       'auth/email-already-in-use': 'Пользователь с таким email уже существует',
+      // eslint-disable-next-line max-len
       'auth/too-many-requests': 'Доступ к этой учетной записи временно отключён из-за множества неудачных попыток входа',
       'auth/weak-password': 'Пароль должен содержать минимум 6 символов',
       'auth/user-disabled': 'Учётная запись пользователя отключена администратором'

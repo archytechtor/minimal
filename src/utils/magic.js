@@ -18,6 +18,5 @@ export const magic = (component, ext) => {
     return ws(..._styles)(observer(component));
   }
 
-
   return ws(..._styles)(inject(store)(observer(component)));
 };

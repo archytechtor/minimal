@@ -11,7 +11,7 @@ const App = ({loading, checkAuth}) => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>{'Loading...'}</div>;
   }
 
   return (
@@ -21,10 +21,12 @@ const App = ({loading, checkAuth}) => {
   );
 };
 
-const mapStore = ({UserStore}) => ({
-  loading: UserStore.loading,
-  checkAuth: UserStore.checkAuth
-});
+const mapStore = ({UserStore}) => {
+  return {
+    loading: UserStore.loading,
+    checkAuth: UserStore.checkAuth
+  };
+};
 
 App.propTypes = {
   loading: PropTypes.bool,

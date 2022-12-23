@@ -33,7 +33,7 @@ class UiStore {
 
   setCurrentPage = (location) => {
     this.currentPage = location;
-  }
+  };
 }
 
 export default UiStore;

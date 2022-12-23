@@ -48,13 +48,11 @@ const get = async(collectionName, id) => {
   return null;
 };
 
-const update = (collectionName, id, data) => {
-  return updateDoc(doc(db, collectionName, id), data);
-};
+const update = (collectionName, id, data) =>
+  updateDoc(doc(db, collectionName, id), data);
 
-const remove = (collectionName, id) => {
-  return deleteDoc(doc(db, collectionName, id));
-};
+const remove = (collectionName, id) =>
+  deleteDoc(doc(db, collectionName, id));
 
 const search = async(collectionName, options = {}) => {
   const {
@@ -68,10 +66,12 @@ const search = async(collectionName, options = {}) => {
     ...(filter || []).map(({field, op, value}) => where(field, op, value))
   ));
 
-  return docs.map((document) => ({
-    id: document.id,
-    ...document.data()
-  }));
+  return docs.map((document) => {
+    return {
+      id: document.id,
+      ...document.data()
+    };
+  });
 };
 
 const stream = (collectionName, setData, options = {}) => {
@@ -88,10 +88,12 @@ const stream = (collectionName, setData, options = {}) => {
 
   return onSnapshot(q, (querySnapshot) => {
     setData(
-      querySnapshot.docs.map((document) => ({
-        id: document.id,
-        ...document.data()
-      }))
+      querySnapshot.docs.map((document) => {
+        return {
+          id: document.id,
+          ...document.data()
+        };
+      })
     );
   });
 };

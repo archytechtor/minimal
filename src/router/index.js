@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import {magic, ROUTES} from '@utils';
 import {authRoutes, publicRoutes} from './routes';
@@ -29,8 +30,14 @@ const Router = ({user}) => (
   </Routes>
 );
 
-const mapStore = ({UserStore}) => ({
-  user: UserStore.user
-});
+const mapStore = ({UserStore}) => {
+  return {
+    user: UserStore.user
+  };
+};
+
+Router.propTypes = {
+  user: PropTypes.object
+};
 
 export default magic(Router, {store: mapStore});

@@ -2,23 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {magic} from '@utils';
 
-const MainPage = ({logOut}) => {
-  return (
-    <div>
-      MainPage
+const MainPage = ({logOut}) => (
+  <div>
+    {'MainPage'}
 
-      <button
-        onClick={logOut}
-      >
-        {'Выйти'}
-      </button>
-    </div>
-  );
+    <button
+      type={'button'}
+      onClick={logOut}
+    >
+      {'Выйти'}
+    </button>
+  </div>
+);
+
+const mapStore = ({UserStore}) => {
+  return {
+    logOut: UserStore.logOut
+  };
 };
-
-const mapStore = ({UserStore}) => ({
-  logOut: UserStore.logOut
-});
 
 MainPage.propTypes = {
   logOut: PropTypes.func
