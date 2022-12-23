@@ -1,0 +1,56 @@
+@import '../../styles/colors';
+
+/* Эти стили временные и их можно удалить, когда будут использоваться сторонние ui компоненты */
+
+.page {
+  width: 100%;
+  min-width: 500px;
+  height: 100vh;
+  min-height: 800px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  input {
+    height: 40px;
+    width: 250px;
+    border-radius: 8px;
+    border: none;
+    padding: 4px 8px;
+    outline: none;
+    color: $text-main;
+    background-color: $black-15;
+    color-scheme: dark;
+  }
+
+  button {
+    height: 40px;
+    width: 250px;
+    border-radius: 8px;
+    border: none;
+    color: $text-main;
+    background-color: $white-5;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $white-10;
+    }
+
+    &:active {
+      background-color: $white-15;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: $text-main;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
