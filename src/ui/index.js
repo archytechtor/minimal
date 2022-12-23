@@ -1,11 +1,13 @@
-import message from './message';
-import Icon from './icon';
 import Button from './button';
+import Icon from './icon';
+import message from './message';
+import Tabs from './tabs';
 import Tooltip from './tooltip';
 
 export {
-  message,
-  Icon,
   Button,
+  Icon,
+  message,
+  Tabs,
   Tooltip
 };
