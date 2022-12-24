@@ -47,6 +47,29 @@
         cursor: pointer;
         border-radius: 8px;
         background-color: $white-5;
+        position: relative;
+        overflow: hidden;
+
+        &.currentColor {
+          &:before {
+            position: absolute;
+            top: 20px;
+            left: -5px;
+            right: -5px;
+            bottom: 20px;
+            content: '';
+            border: 1px solid $red-light;
+            transform: rotate(45deg);
+          }
+        }
+
+        &.white {
+          background-color: $white;
+        }
+
+        &.black {
+          background-color: $black;
+        }
 
         &.red {
           background-color: $red-light;

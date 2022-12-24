@@ -1,41 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {magic} from '@utils';
-import ColorBox from './ColorBox';
+import ColorBoxes from './ColorBoxes';
 import CheckBox from './CheckBox';
 import s from './style.scss';
-
-const colors = [
-  'red',
-  'volcano',
-  'orange',
-  'gold',
-  'yellow',
-  'lime',
-  'green',
-  'cyan',
-  'blue',
-  'deepblue',
-  'purple',
-  'pink'
-];
 
 const PropsControl = ({properties, changeProperties, pickColor}) => (
   <div className={s.controlBlock}>
     <div className={s.controls}>
-      <CheckBox name={'icon'} checked={properties.icon} onChange={changeProperties} />
-      <CheckBox name={'disabled'} checked={properties.disabled} onChange={changeProperties} />
-      <CheckBox name={'loading'} checked={properties.loading} onChange={changeProperties} />
-      <CheckBox name={'inverse'} checked={properties.inverse} onChange={changeProperties} />
-      <CheckBox name={'round'} checked={properties.round} onChange={changeProperties} />
-      <CheckBox name={'full'} checked={properties.full} onChange={changeProperties} />
+      {
+        Object.keys(properties).map((key) => {
+          if (key !== 'color') {
+            return (
+              <CheckBox
+                key={key}
+                name={key}
+                checked={properties[key]}
+                onChange={changeProperties}
+              />
+            );
+          }
 
-      <div className={s.colors}>
-        {
-          colors.map((color) => <ColorBox key={color} color={color} onClick={pickColor} />)
-        }
-      </div>
+          return null;
+        })
+      }
     </div>
+    <ColorBoxes onClick={pickColor} />
     <pre>
       {
         JSON.stringify(properties, {}, 2)

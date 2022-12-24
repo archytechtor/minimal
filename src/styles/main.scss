@@ -18,3 +18,12 @@ body {
 .app {
   padding: 10px;
 }
+
+a {
+  text-decoration: none;
+  color: $text-main;
+
+  &:hover {
+    color: $white;
+  }
+}

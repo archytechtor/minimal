@@ -7,8 +7,6 @@ import PropsControl from '@views/TestPage/Buttons/PropsControl';
 const Buttons = () => {
   const [properties, setProperties] = React.useState({
     icon: false,
-    disabled: false,
-    loading: false,
     inverse: false,
     round: false,
     full: false,
@@ -41,8 +39,39 @@ const Buttons = () => {
         pickColor={pickColor}
       />
       <div className={s.demoBlock}>
+        {'Default Button'}
         <Button
           {...properties}
+          icon={
+            properties.icon ? (
+              <Icon
+                type={'solid'}
+                name={'star'}
+              />
+            ) : null
+          }
+        >
+          {'Button'}
+        </Button>
+        {'Loading Button'}
+        <Button
+          {...properties}
+          loading={true}
+          icon={
+            properties.icon ? (
+              <Icon
+                type={'solid'}
+                name={'star'}
+              />
+            ) : null
+          }
+        >
+          {'Button'}
+        </Button>
+        {'Disabled Button'}
+        <Button
+          {...properties}
+          disabled={true}
           icon={
             properties.icon ? (
               <Icon

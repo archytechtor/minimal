@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {icons} from './svg';
 import ws from 'isomorphic-style-loader/withStyles';
 import s from './style.scss';
+import cn from 'classnames';
 
 const Icon = (props) => {
   const {
@@ -36,26 +37,17 @@ const Icon = (props) => {
     path
   } = currentIcon;
 
-  const getClasses = () => {
-    const classes = [s.icon];
-
-    if (color) {
-      classes.push(`${color}`);
-    }
-
-    if (spin) {
-      classes.push(s.spin);
-    }
-
-    if (className) {
-      classes.push(className);
-    }
-
-    return classes.join(' ');
-  };
+  const classes = cn(
+    s.icon,
+    {
+      [s.spin]: spin,
+      [s[color]]: color
+    },
+    className
+  );
 
   return (
-    <span className={getClasses()}>
+    <span className={classes}>
       <svg
         viewBox={viewBox}
         width={size}
