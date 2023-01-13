@@ -67,7 +67,7 @@ const PropsControl = ({properties, changeProperties, pickColor}) => (
         onChange={changeProperties}
         type={'number'}
         min={1}
-        max={80}
+        max={200}
       />
     </div>
     <ColorBoxes onClick={pickColor} />

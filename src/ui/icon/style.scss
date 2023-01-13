@@ -12,65 +12,69 @@
 
   & > svg {
     fill: currentColor;
+
+    & > path {
+      color: currentColor;
+
+      &.white {
+        color: $white;
+      }
+
+      &.black {
+        color: $black;
+      }
+
+      &.pink {
+        color: $pink-light;
+      }
+
+      &.red {
+        color: $red-light;
+      }
+
+      &.volcano {
+        color: $volcano-light;
+      }
+
+      &.orange {
+        color: $orange-light;
+      }
+
+      &.gold {
+        color: $gold-light;
+      }
+
+      &.yellow {
+        color: $yellow-light;
+      }
+
+      &.lime {
+        color: $lime-light;
+      }
+
+      &.green {
+        color: $green-light;
+      }
+
+      &.cyan {
+        color: $cyan-light;
+      }
+
+      &.blue {
+        color: $blue-light;
+      }
+
+      &.deepblue {
+        color: $deepblue-light;
+      }
+
+      &.purple {
+        color: $purple-light;
+      }
+    }
   }
 
   &.spin {
     animation: spin 1s linear infinite;
-  }
-
-  &.white {
-    color: $white;
-  }
-
-  &.black {
-    color: $black;
-  }
-
-  &.pink {
-    color: $pink-light;
-  }
-
-  &.red {
-    color: $red-light !important;
-  }
-
-  &.volcano {
-    color: $volcano-light;
-  }
-
-  &.orange {
-    color: $orange-light;
-  }
-
-  &.gold {
-    color: $gold-light;
-  }
-
-  &.yellow {
-    color: $yellow-light;
-  }
-
-  &.lime {
-    color: $lime-light;
-  }
-
-  &.green {
-    color: $green-light;
-  }
-
-  &.cyan {
-    color: $cyan-light;
-  }
-
-  &.blue {
-    color: $blue-light;
-  }
-
-  &.deepblue {
-    color: $deepblue-light;
-  }
-
-  &.purple {
-    color: $purple-light;
   }
 }

@@ -33,28 +33,49 @@ const Icon = (props) => {
   }
 
   const {
-    view_box: viewBox,
+    viewBox,
     path
   } = currentIcon;
 
-  const classes = cn(
-    s.icon,
-    {
-      [s.spin]: spin,
-      [s[color]]: color
-    },
-    className
-  );
+  const svgPath = () => {
+    const [primaryColor, secondaryColor] = Array.isArray(color) ? color : [color, color];
+
+    if (Array.isArray(path)) {
+      const [primaryPath, secondaryPath] = path;
+
+      return (
+        <React.Fragment>
+          <path
+            d={primaryPath}
+            className={cn({[s[primaryColor]]: primaryColor})}
+          />
+          <path
+            d={secondaryPath}
+            className={cn({[s[secondaryColor]]: secondaryColor})}
+          />
+        </React.Fragment>
+      );
+    }
+
+    return (
+      <path
+        d={path}
+        className={cn({[s[primaryColor]]: primaryColor})}
+      />
+    );
+  };
 
   return (
-    <span className={classes}>
+    <span className={cn(s.icon, {[s.spin]: spin}, className)}>
       <svg
         viewBox={viewBox}
         width={size}
         height={size}
         {...other}
       >
-        <path d={path} />
+        {
+          svgPath()
+        }
       </svg>
     </span>
   );
@@ -69,22 +90,43 @@ Icon.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  color: PropTypes.oneOf([
-    'currentColor',
-    'white',
-    'black',
-    'red',
-    'volcano',
-    'orange',
-    'gold',
-    'yellow',
-    'lime',
-    'green',
-    'cyan',
-    'blue',
-    'deepblue',
-    'purple',
-    'pink'
+  color: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOf([
+        'currentColor',
+        'white',
+        'black',
+        'red',
+        'volcano',
+        'orange',
+        'gold',
+        'yellow',
+        'lime',
+        'green',
+        'cyan',
+        'blue',
+        'deepblue',
+        'purple',
+        'pink'
+      ])
+    ),
+    PropTypes.oneOf([
+      'currentColor',
+      'white',
+      'black',
+      'red',
+      'volcano',
+      'orange',
+      'gold',
+      'yellow',
+      'lime',
+      'green',
+      'cyan',
+      'blue',
+      'deepblue',
+      'purple',
+      'pink'
+    ])
   ])
 };
 
@@ -93,3 +135,21 @@ Icon.defaultProps = {
 };
 
 export default ws(s)(Icon);
+
+PropTypes.oneOf([
+  'currentColor',
+  'white',
+  'black',
+  'red',
+  'volcano',
+  'orange',
+  'gold',
+  'yellow',
+  'lime',
+  'green',
+  'cyan',
+  'blue',
+  'deepblue',
+  'purple',
+  'pink'
+]);
