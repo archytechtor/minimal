@@ -1,0 +1,317 @@
+@import '../../styles/colors.scss';
+
+.tooltip {
+  position: absolute;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: $white;
+  background-color: $black;
+  width: max-content;
+  max-width: 300px;
+  z-index: 2;
+  user-select: none;
+
+  .content {
+    width: 100%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &:not(.without-arrow)::after {
+    content: '';
+    position: absolute;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+  }
+
+  &.top-left {
+    &::after {
+      top: 100%;
+      left: 20px;
+      border-top-color: $black;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.top-center {
+    &::after {
+      top: 100%;
+      left: 50%;
+      border-top-color: $black;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.top-right {
+    &::after {
+      top: 100%;
+      right: 15px;
+      border-top-color: $black;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.bottom-left {
+    &::after {
+      bottom: 100%;
+      left: 20px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: $black;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.bottom-center {
+    &::after {
+      bottom: 100%;
+      left: 50%;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: $black;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.bottom-right {
+    &::after {
+      bottom: 100%;
+      right: 15px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: $black;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.left-top {
+    &::after {
+      top: 8px;
+      right: -10px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      border-left-color: $black;
+    }
+  }
+
+  &.left-center {
+    &::after {
+      top: calc(50% - 5px);
+      right: -10px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      border-left-color: $black;
+    }
+  }
+
+  &.left-bottom {
+    &::after {
+      bottom: 8px;
+      right: -10px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      border-left-color: $black;
+    }
+  }
+
+  &.right-top {
+    &::after {
+      top: 8px;
+      left: -5px;
+      border-top-color: transparent !important;
+      border-right-color: $black;
+      border-bottom-color: transparent !important;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.right-center {
+    &::after {
+      top: calc(50% - 5px);
+      left: -5px;
+      border-top-color: transparent !important;
+      border-right-color: $black;
+      border-bottom-color: transparent !important;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.right-bottom {
+    &::after {
+      bottom: 8px;
+      left: -5px;
+      border-top-color: transparent !important;
+      border-right-color: $black;
+      border-bottom-color: transparent !important;
+      border-left-color: transparent !important;
+    }
+  }
+
+  &.red {
+    color: $black;
+    background-color: $red-light;
+
+    &::after {
+      border-color: $red-light;
+    }
+  }
+
+  &.volcano {
+    color: $black;
+    background-color: $volcano-light;
+
+    &::after {
+      border-color: $volcano-light;
+    }
+  }
+
+  &.orange {
+    color: $black;
+    background-color: $orange-light;
+
+    &::after {
+      border-color: $orange-light;
+    }
+  }
+
+  &.gold {
+    color: $black;
+    background-color: $gold-light;
+
+    &::after {
+      border-color: $gold-light;
+    }
+  }
+
+  &.yellow {
+    color: $black;
+    background-color: $yellow-light;
+
+    &::after {
+      border-color: $yellow-light;
+    }
+  }
+
+  &.lime {
+    color: $black;
+    background-color: $lime-light;
+
+    &::after {
+      border-color: $lime-light;
+    }
+  }
+
+  &.green {
+    color: $black;
+    background-color: $green-light;
+
+    &::after {
+      border-color: $green-light;
+    }
+  }
+
+  &.cyan {
+    color: $black;
+    background-color: $cyan-light;
+
+    &::after {
+      border-color: $cyan-light;
+    }
+  }
+
+  &.blue {
+    color: $black;
+    background-color: $blue-light;
+
+    &::after {
+      border-color: $blue-light;
+    }
+  }
+
+  &.deepblue {
+    color: $black;
+    background-color: $deepblue-light;
+
+    &::after {
+      border-color: $deepblue-light;
+    }
+  }
+
+  &.purple {
+    color: $black;
+    background-color: $purple-light;
+
+    &::after {
+      border-color: $purple-light;
+    }
+  }
+
+  &.pink {
+    color: $black;
+    background-color: $pink-light;
+
+    &::after {
+      border-color: $pink-light;
+    }
+  }
+
+  &.red-inverse {
+    color: $red-light !important;
+  }
+
+  &.volcano-inverse {
+    color: $volcano-light !important;
+  }
+
+  &.orange-inverse {
+    color: $orange-light !important;
+  }
+
+  &.gold-inverse {
+    color: $gold-light !important;
+  }
+
+  &.yellow-inverse {
+    color: $yellow-light !important;
+  }
+
+  &.lime-inverse {
+    color: $lime-light !important;
+  }
+
+  &.green-inverse {
+    color: $green-light !important;
+  }
+
+  &.cyan-inverse {
+    color: $cyan-light !important;
+  }
+
+  &.blue-inverse {
+    color: $blue-light !important;
+  }
+
+  &.deepblue-inverse {
+    color: $deepblue-light !important;
+  }
+
+  &.purple-inverse {
+    color: $purple-light !important;
+  }
+
+  &.pink-inverse {
+    color: $pink-light !important;
+  }
+}

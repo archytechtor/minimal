@@ -2,6 +2,7 @@ import React from 'react';
 import {Tabs} from '@ui';
 import Icons from './Icons';
 import Buttons from './Buttons';
+import Tooltips from './Tooltips';
 
 const TestPage = () => {
   const tabs = [
@@ -15,7 +16,7 @@ const TestPage = () => {
     },
     {
       title: 'Tooltip',
-      content: 'Content of Tab 3'
+      content: <Tooltips />
     }
   ];
 

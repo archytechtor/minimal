@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {calculatePosition} from '@utils';
 import ws from 'isomorphic-style-loader/withStyles';
-import s from './tooltip.scss';
+import cn from 'classnames';
+import s from './style.scss';
 
 const Tooltip = (props) => {
-  const childrenRef = React.useRef();
+  const childRef = React.useRef();
   const tooltipRef = React.useRef();
   const [show, setShow] = React.useState(false);
 
@@ -19,115 +21,51 @@ const Tooltip = (props) => {
     ...other
   } = props;
 
+  const cloneChildren = React.cloneElement(children, {ref: childRef});
+
   React.useEffect(() => {
-    if (!childrenRef.current || !tooltipRef.current) {
+    if (!childRef.current || !tooltipRef.current) {
       return;
     }
 
-    const container = childrenRef.current.getBoundingClientRect();
-    const tooltip = tooltipRef.current.getBoundingClientRect();
+    const position = calculatePosition(placement, childRef, tooltipRef);
 
-    switch (placement) {
-      case 'top-left':
-        tooltipRef.current.style.top = `${-tooltip.height - 10}px`;
-        tooltipRef.current.style.left = 0;
-        break;
-      case 'top-center':
-        tooltipRef.current.style.top = `${-tooltip.height - 10}px`;
-        tooltipRef.current.style.left = `${container.width / 2 - tooltip.width / 2}px`;
-        break;
-      case 'top-right':
-        tooltipRef.current.style.top = `${-tooltip.height - 10}px`;
-        tooltipRef.current.style.left = `${-tooltip.width + container.width}px`;
-        break;
-      case 'bottom-left':
-        tooltipRef.current.style.top = `${container.height + 10}px`;
-        tooltipRef.current.style.left = 0;
-        break;
-      case 'bottom-center':
-        tooltipRef.current.style.top = `${container.height + 10}px`;
-        tooltipRef.current.style.left = `${container.width / 2 - tooltip.width / 2}px`;
-        break;
-      case 'bottom-right':
-        tooltipRef.current.style.top = `${container.height + 10}px`;
-        tooltipRef.current.style.left = `${-tooltip.width + container.width}px`;
-        break;
-      case 'left-top':
-        tooltipRef.current.style.top = 0;
-        tooltipRef.current.style.left = `${-tooltip.width - 10}px`;
-        break;
-      case 'left-center':
-        tooltipRef.current.style.top = `${container.height / 2 - tooltip.height / 2}px`;
-        tooltipRef.current.style.left = `${-tooltip.width - 10}px`;
-        break;
-      case 'left-bottom':
-        tooltipRef.current.style.top = `${container.height - tooltip.height}px`;
-        tooltipRef.current.style.left = `${-tooltip.width - 10}px`;
-        break;
-      case 'right-top':
-        tooltipRef.current.style.top = 0;
-        tooltipRef.current.style.left = `${container.width + 10}px`;
-        break;
-      case 'right-center':
-        tooltipRef.current.style.top = `${container.height / 2 - tooltip.height / 2}px`;
-        tooltipRef.current.style.left = `${container.width + 10}px`;
-        break;
-      case 'right-bottom':
-        tooltipRef.current.style.top = `${container.height - tooltip.height}px`;
-        tooltipRef.current.style.left = `${container.width + 10}px`;
-        break;
-      default:
-        tooltipRef.current.style.top = `${container.width + 10}px`;
-        tooltipRef.current.style.left = `${container.height / 2 - tooltip.height / 2}px`;
-        break;
-    }
+    tooltipRef.current.style.top = position.top;
+    tooltipRef.current.style.left = position.left;
   }, [show]);
 
-  const getClasses = () => {
-    const classes = [s.tooltip];
-
-    if (color) {
-      classes.push(s[`${color}${inverse ? '-inverse' : ''}`]);
-    }
-
-    if (!arrow) {
-      classes.push(s['without-arrow']);
-    }
-
-    if (placement) {
-      classes.push(s[`${placement}`]);
-    }
-
-    if (className) {
-      classes.push(className);
-    }
-
-    return classes.join(' ');
-  };
+  const tooltipClasses = cn(
+    s.tooltip,
+    {
+      [s[`${color}${inverse ? '-inverse' : ''}`]]: color,
+      [s['without-arrow']]: !arrow,
+      [s[`${placement}`]]: placement
+    },
+    className
+  );
 
   return (
-    <div className={s.container}>
-      <div
-        ref={childrenRef}
+    <React.Fragment>
+      <span
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
       >
-        {children}
-      </div>
+        {cloneChildren}
+      </span>
       {
         show && (
-          <span
+          <div
             ref={tooltipRef}
-            className={getClasses()}
+            className={tooltipClasses}
             {...other}
           >
             <span className={s.content}>
               {content}
             </span>
-          </span>
+          </div>
         )
       }
-    </div>
+    </React.Fragment>
   );
 };
 

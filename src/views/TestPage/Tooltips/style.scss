@@ -49,7 +49,7 @@
         position: relative;
         overflow: hidden;
 
-        &.currentColor {
+        &.default {
           &:before {
             position: absolute;
             top: 20px;
@@ -60,14 +60,6 @@
             border: 1px solid $red-light;
             transform: rotate(45deg);
           }
-        }
-
-        &.white {
-          background-color: $white;
-        }
-
-        &.black {
-          background-color: $black;
         }
 
         &.red {
@@ -122,15 +114,84 @@
   }
 
   .demoBlock {
-    width: 500px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    width: 720px;
+    height: 720px;
+    position: relative;
     background-color: $black-15;
     border-radius: 16px;
     padding: 20px;
+    margin-top: 40px;
+
+    & .position {
+      width: 120px;
+      min-height: 120px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $black-15;
+      border-radius: 16px;
+
+      &.top-left {
+        top: 20px;
+        left: 160px;
+      }
+
+      &.top-center {
+        top: 20px;
+        left: 300px;
+      }
+
+      &.top-right {
+        top: 20px;
+        left: 440px;
+      }
+
+      &.bottom-left {
+        bottom: 20px;
+        left: 160px;
+      }
+
+      &.bottom-center {
+        bottom: 20px;
+        left: 300px;
+      }
+
+      &.bottom-right {
+        bottom: 20px;
+        left: 440px;
+      }
+
+      &.left-top {
+        top: 160px;
+        left: 20px;
+      }
+
+      &.left-center {
+        top: 300px;
+        left: 20px;
+      }
+
+      &.left-bottom {
+        top: 440px;
+        left: 20px;
+      }
+
+      &.right-top {
+        top: 160px;
+        right: 20px;
+      }
+
+      &.right-center {
+        top: 300px;
+        right: 20px;
+      }
+
+      &.right-bottom {
+        top: 440px;
+        right: 20px;
+      }
+    }
   }
 }
+
