@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --mode=development --open --hot",
     "build": "webpack --mode=production",
-    "lint": "eslint --max-warnings 0 --config ./.eslintrc.json --ignore-path ./.eslintignore ./"
+    "lint": "eslint --max-warnings 0 --config ./.eslintrc.json --ignore-path ./.eslintignore ./",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "archytechtor",
   "license": "ISC",
@@ -31,6 +33,7 @@
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-react": "7.31.11",
+    "gh-pages": "6.0.0",
     "html-webpack-plugin": "5.5.0",
     "isomorphic-style-loader": "5.3.2",
     "postcss": "8.4.19",
