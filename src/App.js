@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom'; // on normal host change to BrowserRouter
 import {magic} from '@utils';
 import Router from './router';
 import s from '@styles/main.scss';
@@ -15,9 +15,9 @@ const App = ({loading, checkAuth}) => {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Router />
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
