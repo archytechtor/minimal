@@ -8,7 +8,6 @@ const Tab = ({title, isActive, onClick}) => (
   <li className={cn(s.tab, {[s.active]: isActive})}>
     <a
       className={s.title}
-      href={'#'}
       onClick={onClick}
     >
       {title}

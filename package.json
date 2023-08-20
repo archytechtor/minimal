@@ -1,7 +1,7 @@
 {
   "name": "minimal",
   "version": "1.0.0",
-  "homepage": "https://archytechtor.github.io/react-app-without-cra",
+  "homepage": "https://archytechtor.github.io/minimal",
   "description": "Minimal boilerplate react app without CRA",
   "main": "index.js",
   "scripts": {
