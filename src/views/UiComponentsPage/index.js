@@ -4,7 +4,7 @@ import Icons from './Icons';
 import Buttons from './Buttons';
 import Tooltips from './Tooltips';
 
-const TestPage = () => {
+const UiComponentsPage = () => {
   const tabs = [
     {
       title: 'Icon',
@@ -28,4 +28,4 @@ const TestPage = () => {
   );
 };
 
-export default TestPage;
+export default UiComponentsPage;

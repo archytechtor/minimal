@@ -1,11 +1,13 @@
 import MainPage from './MainPage';
 import AuthPage from './AuthPage';
 import NotFoundPage from './NotFoundPage';
-import TestPage from './TestPage';
+import UiComponentsPage from './UiComponentsPage';
+import ZemsCoursePage from './ZemsCoursePage';
 
 export {
   MainPage,
   AuthPage,
   NotFoundPage,
-  TestPage
+  UiComponentsPage,
+  ZemsCoursePage
 };

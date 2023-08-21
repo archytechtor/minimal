@@ -4,7 +4,8 @@ import {
   MainPage,
   AuthPage,
   NotFoundPage,
-  TestPage
+  UiComponentsPage,
+  ZemsCoursePage
 } from '@views';
 
 const authRoutes = [
@@ -13,8 +14,12 @@ const authRoutes = [
     element: <MainPage />
   },
   {
-    path: ROUTES.TEST,
-    element: <TestPage />
+    path: ROUTES.UI,
+    element: <UiComponentsPage />
+  },
+  {
+    path: ROUTES.ZEMS_COURSE,
+    element: <ZemsCoursePage />
   }
 ];
 

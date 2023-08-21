@@ -43,6 +43,7 @@
       "version": "18.2.0"
     }
   },
+  "ignorePatterns": ["/build/*", "/public/*"],
   "rules": {
     "no-console": 2,
     "rest-spread-spacing": [

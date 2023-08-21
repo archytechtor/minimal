@@ -6,8 +6,11 @@ import {Link} from 'react-router-dom';
 
 const MainPage = ({logOut}) => (
   <div style={{display: 'flex', flexDirection: 'column', gap: '20px', padding: '20px'}}>
-    <Link to={'/test'}>
-      {'Test'}
+    <Link to={'/ui'}>
+      {'UI Components'}
+    </Link>
+    <Link to={'/zems_course'}>
+      {'Курс "Замер квартиры"'}
     </Link>
     <Button onClick={logOut}>
       {'Выйти'}

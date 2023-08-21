@@ -3,5 +3,6 @@
   "SIGN_UP": "/signup",
   "NOT_FOUND_404": "/not_found",
   "MAIN": "/",
-  "TEST": "/test"
+  "UI": "/ui",
+  "ZEMS_COURSE": "/zems_course"
 }

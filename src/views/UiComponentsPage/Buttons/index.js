@@ -1,8 +1,8 @@
 import React from 'react';
 import {Button, Icon} from '@ui';
 import {magic} from '@utils';
+import PropsControl from './PropsControl';
 import s from './style.scss';
-import PropsControl from '@views/TestPage/Buttons/PropsControl';
 
 const Buttons = () => {
   const [properties, setProperties] = React.useState({

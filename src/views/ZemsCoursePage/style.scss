@@ -1,0 +1,44 @@
+@import '../../styles/colors.scss';
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .title {
+      font-weight: normal;
+      font-size: 1.2rem;
+      color: $orange-main;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+
+        .link {
+          color: $blue-main;
+
+          &:hover {
+            color: $blue-light;
+          }
+
+          &:active {
+            color: $blue-dark;
+          }
+        }
+      }
+    }
+  }
+}
