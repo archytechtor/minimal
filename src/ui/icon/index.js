@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {icons} from './svg';
 import ws from 'isomorphic-style-loader/withStyles';
-import s from './style.scss';
 import cn from 'classnames';
+import s from './style.scss';
 
 const Icon = (props) => {
   const {

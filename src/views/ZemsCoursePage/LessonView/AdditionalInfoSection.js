@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {magic} from '@utils';
 import {Icon} from '@ui';
+import DynamicInfo from './DynamicInfo';
 import s from '../style.scss';
 
 const AdditionalInfoSection = ({additionalInfo}) => {
@@ -17,26 +18,8 @@ const AdditionalInfoSection = ({additionalInfo}) => {
       <ul className={s.list}>
         {
           additionalInfo.map((item) => (
-            <li className={s.item} key={item.text}>
-              <Icon
-                type={'solid'}
-                name={'chevron-right'}
-                size={'14'}
-                color={'white'}
-              />
-              <p>{item.text}</p>
-              {
-                item.type === 'link' && (
-                  <a
-                    className={s.link}
-                    href={item.link.href}
-                    rel={'noreferrer noopener'}
-                    target={'_blank'}
-                  >
-                    {item.link.label}
-                  </a>
-                )
-              }
+            <li key={item.text}>
+              <DynamicInfo item={item} />
             </li>
           ))
         }

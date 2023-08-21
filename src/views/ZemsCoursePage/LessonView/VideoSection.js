@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {magic} from '@utils';
+import s from '../style.scss';
 
-const VideoSection = ({fileName}) => (
-  <video
-    width={'1024'}
-    height={'576'}
-    controls={true}
-  >
-    <source
-      src={`/videos/${fileName}.mp4`}
-      type={'video/mp4'}
-    />
-  </video>
+const VideoSection = ({videoId}) => (
+  <iframe
+    src={`https://drive.google.com/file/d/${videoId}/preview?start=1`}
+    width={1280}
+    height={720}
+    className={s.iframe}
+    allow={'autoplay'}
+    allowFullScreen={true}
+  ></iframe>
 );
 
 VideoSection.propTypes = {
-  fileName: PropTypes.string
+  videoId: PropTypes.string
 };
 
-export default VideoSection;
+export default magic(VideoSection, {styles: s});

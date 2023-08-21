@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TabPane from './TabPane';
 import TabContent from './TabContent';
-import cn from 'classnames';
 import ws from 'isomorphic-style-loader/withStyles';
+import cn from 'classnames';
 import s from './style.scss';
 
 const Tabs = ({tabs, orientation}) => {

@@ -39,6 +39,60 @@
           }
         }
       }
+
+      .table {
+        margin-top: 0.5rem;
+        border-spacing: 0;
+
+        .header {
+          .headerCell {
+            &:first-child {
+              border-radius: 0.5rem 0 0 0.5rem;
+            }
+
+            &:last-child {
+              border-radius:  0 0.5rem 0.5rem 0;
+            }
+
+            padding: 1rem;
+            color: $orange-light;
+            background: $black-25;
+          }
+        }
+
+        .row {
+          &:nth-child(odd) {
+            background: $white-5;
+          }
+
+          .rowCell {
+            &:first-child {
+              border-radius: 0.5rem 0 0 0.5rem;
+            }
+
+            &:last-child {
+              border-radius:  0 0.5rem 0.5rem 0;
+            }
+
+            margin-top: 0.25rem;
+            padding: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .preview {
+    background-image: url('1. Вводный урок.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    width: 1280px;
+    height: 720px;
+
+    .iframe {
+      border: 0;
     }
   }
 }

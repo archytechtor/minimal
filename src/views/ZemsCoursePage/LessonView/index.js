@@ -24,7 +24,7 @@ const LessonView = ({tab}) => {
       />
       <ToLearnSection toLearn={lesson.toLearn || []} />
       <ResultSection result={lesson.result} />
-      <VideoSection fileName={lesson.title} />
+      <VideoSection videoId={lesson.videoId} />
       <AdditionalInfoSection additionalInfo={lesson.additionalInfo || []} />
     </div>
   );

@@ -1,0 +1,102 @@
+@import '../../styles/colors.scss';
+
+.table {
+  width: 100%;
+  min-width: min-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header {
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      min-width: min-content;
+      padding: ;
+
+      .cell {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        width: 100%;
+        height: 40px;
+
+        &.center {
+          text-align: center;
+        }
+
+        &.right {
+          text-align: right;
+        }
+
+        .title {
+          width: 100%;
+          font-weight: normal;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &.red {
+            color: $red-light;
+          }
+
+          &.volcano {
+            color: $volcano-light;
+          }
+
+          &.orange {
+            color: $orange-light;
+          }
+
+          &.gold {
+            color: $gold-light;
+          }
+
+          &.yellow {
+            color: $yellow-light;
+          }
+
+          &.lime {
+            color: $lime-light;
+          }
+
+          &.green {
+            color: $green-light;
+          }
+
+          &.cyan {
+            color: $cyan-light;
+          }
+
+          &.blue {
+            color: $blue-light;
+          }
+
+          &.deepblue {
+            color: $deepblue-light;
+          }
+
+          &.purple {
+            color: $purple-light;
+          }
+
+          &.pink {
+            color: $pink-light;
+          }
+        }
+      }
+    }
+  }
+}
