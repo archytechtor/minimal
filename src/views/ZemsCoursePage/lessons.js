@@ -342,7 +342,7 @@ export default {
               priority: 2, // желательно
               price: null,
               model: null
-            },
+            }
           ]
         }
       },
@@ -471,5 +471,5 @@ export default {
     ],
     result: 'Вы сможете подготовить обмерный план — с проёмами, размерами, площадями и текстовыми комментариями',
     videoId: '1sEIjd-i5dF25CRjlAc0BgDbRtw85Md74'
-  },
+  }
 };

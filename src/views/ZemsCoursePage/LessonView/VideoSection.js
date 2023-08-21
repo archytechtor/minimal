@@ -11,7 +11,7 @@ const VideoSection = ({videoId}) => (
     className={s.iframe}
     allow={'autoplay'}
     allowFullScreen={true}
-  ></iframe>
+  />
 );
 
 VideoSection.propTypes = {

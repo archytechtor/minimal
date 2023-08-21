@@ -25,7 +25,6 @@ const DynamicInfo = ({item}) => {
     }
   }
 
-
   return null;
 };
 

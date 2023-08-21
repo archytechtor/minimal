@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {magic} from '@utils';
-import {Icon} from '@ui';
 import DynamicInfo from './DynamicInfo';
 import s from '../style.scss';
 

@@ -6,7 +6,9 @@ import s from './style.scss';
 
 const Header = ({columns, withSummary}) => {
   return (
-
+    <div>
+      {'Header'}
+    </div>
   );
 };
 

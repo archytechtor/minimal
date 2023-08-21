@@ -6,8 +6,6 @@ import cn from 'classnames';
 import s from '../style.scss';
 
 const Table = ({text, columns, values}) => {
-  const classes = cn()
-
   return (
     <React.Fragment>
       <p>{text}</p>
