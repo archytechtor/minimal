@@ -101,21 +101,21 @@ export default {
           ],
           values: [
             {
-              icon: '/toolIcons/tapeMeasure.png',
+              icon: 'https://drive.google.com/uc?export=view&id=1uK3u6Mgrg8ZKBFBuLdRl3yHR91xqRq6y',
               name: 'Рулетка',
               hotkey: 'R',
               originalNameWindows: 'Инструменты/Рулетка',
               originalNameMacOs: 'Инструменты/Рулетка'
             },
             {
-              icon: '/toolIcons/pencil.png',
+              icon: 'https://drive.google.com/uc?export=view&id=1hpXhm2Q-4Pg9cCYJF4dWUV3suH8JWRCQ',
               name: 'Линия (карандаш)',
               hotkey: 'W',
               originalNameWindows: 'Нарисовать/Линии/Линия',
               originalNameMacOs: 'Нарисовать/Линии/Линия'
             },
             {
-              icon: '/toolIcons/eraser.png',
+              icon: 'https://drive.google.com/uc?export=view&id=1v9BT59KB1d4eTsUBBgKAQ6ZRz1XNNwNd',
               name: 'Ластик',
               hotkey: 'E',
               originalNameWindows: 'Инструменты/Ластик',
@@ -129,21 +129,21 @@ export default {
               originalNameMacOs: 'Правка/Удалить направляющие'
             },
             {
-              icon: '/toolIcons/rectangle.png',
+              icon: 'https://drive.google.com/uc?export=view&id=1mqg3U52dIWOKDhAAGB0HrsJpW-3A0aBV',
               name: 'Прямоугольник',
               hotkey: 'Q',
               originalNameWindows: 'Нарисовать/Фигуры/Прямоугольник',
               originalNameMacOs: 'Нарисовать/Фигуры/Прямоугольник'
             },
             {
-              icon: '/toolIcons/volume.png',
+              icon: 'https://drive.google.com/uc?export=view&id=1E-dua1aSrPLo1WQ8KBfg2Alkm9hTU28w',
               name: 'Объём',
               hotkey: 'T',
               originalNameWindows: 'Инструменты/Вдавить-вытянуть',
               originalNameMacOs: 'Инструменты/Вдавить/Вытянуть'
             },
             {
-              icon: '/toolIcons/move.png',
+              icon: 'https://drive.google.com/uc?export=view&id=13u1pf8xuq_6wc_lTVIWTh9FnZUalOUwc',
               name: 'Перемещение',
               hotkey: 'V',
               originalNameWindows: 'Инструменты/Переместить',
@@ -157,7 +157,7 @@ export default {
               originalNameMacOs: 'Правка/Создать группу'
             },
             {
-              icon: '/toolIcons/filling.png',
+              icon: 'https://drive.google.com/uc?export=view&id=1Lds0uC7nf27n7BWxhJtEp2Ee0Yi3hKzU',
               name: 'Заливка',
               hotkey: 'B',
               originalNameWindows: 'Инструменты/Заливка',
@@ -349,7 +349,7 @@ export default {
       {
         type: 'list',
         text: 'Внимание, НЕ ПОКУПАТЬ!!!',
-        list: [
+        items: [
           'Угломер электронный',
           'Уровень строительный пузырьковый',
           'Уровень строительный электронный',
@@ -378,9 +378,12 @@ export default {
     videoId: '1KxfLy2_p2UhKUokCAm41qu-uD6dJIqBz',
     additionalInfo: [
       {
-        type: 'picture',
-        text: 'Схема фотографирования объекта:',
-        src: '/Схема фотографирования объекта.jpg'
+        type: 'link',
+        text: 'Скачать',
+        link: {
+          label: 'схему фотографирования объекта.jpg',
+          href: 'https://drive.google.com/file/d/1Qj8zSdGBhl_xJUCMR6HNsoIAZTp_Q6lA/view?usp=sharing'
+        }
       }
     ]
   },
