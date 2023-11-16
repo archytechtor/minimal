@@ -4,5 +4,6 @@
   "NOT_FOUND_404": "/not_found",
   "MAIN": "/",
   "UI": "/ui",
-  "ZEMS_COURSE": "/zems_course"
+  "ZEMS_COURSE": "/zems_course",
+  "FIVE_LETTERS": "/five_letters"
 }

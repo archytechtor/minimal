@@ -1,5 +1,7 @@
+import React from 'react';
 import Link from './LessonView/Link';
 
+/* eslint-disable max-len */
 export default {
   1: {
     title: '1. Вводный урок',

@@ -8,7 +8,7 @@ const List = ({text, items}) => (
     <p>{text}</p>
     <ul>
       {
-        items.map((item) => (<li>{item}</li>))
+        items.map((item) => (<li key={`${item}`}>{item}</li>))
       }
     </ul>
   </div>

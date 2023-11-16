@@ -12,6 +12,9 @@ const MainPage = ({logOut}) => (
     <Link to={'/zems_course'}>
       {'Курс "Замер квартиры"'}
     </Link>
+    <Link to={'/five_letters'}>
+      {'5 букв'}
+    </Link>
     <Button onClick={logOut}>
       {'Выйти'}
     </Button>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Link from './Link';
 import Table from './Table';
 import List from './List';
-import Picture from './VideoSection';
 import VideoSection from './VideoSection';
 
 const DynamicInfo = ({item}) => {
@@ -36,7 +35,7 @@ const DynamicInfo = ({item}) => {
     }
     case 'picture': {
       return (
-        <Picture
+        <VideoSection
           text={item.text}
           src={item.src}
         />
