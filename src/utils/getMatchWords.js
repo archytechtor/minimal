@@ -16,20 +16,56 @@ const getByAntiMask = (word, antiMask) => {
   return regex.test(word);
 };
 
-const getByKnownLetters = (word, hasLetters, noLetters) => {
+const getByHasLetters = (word, hasLetters) => {
   const letters = word.split('');
-
-  const itsOkWord = noLetters ?
-    noLetters.every((letter) => !letters.includes(letter)) :
-    true;
-
-  if (!itsOkWord) {
-    return false;
-  }
 
   return hasLetters.length ?
     hasLetters.every((letter) => letters.includes(letter)) :
     true;
+};
+
+const getByNoLetters = (word, noLetters) => {
+  const letters = word.split('');
+
+  return noLetters.length ?
+    noLetters.every((letter) => !letters.includes(letter)) :
+    true;
+};
+
+const intersections = (...arrays) => {
+  arrays.sort((a, b) => a.length - b.length);
+
+  const arraysDicts = [];
+
+  for (let arrayIndex = 1; arrayIndex < arrays.length; arrayIndex++) {
+    const dict = {};
+
+    for (let index = 0; index < arrays[arrayIndex].length; index++) {
+      dict[arrays[arrayIndex][index]] = true;
+    }
+
+    arraysDicts.push(dict);
+  }
+
+  const res = [];
+
+  for (let index = 0; index < arrays[0].length; index++) {
+    let flag = true;
+
+    for (let arrayIndex = 0; arrayIndex < arraysDicts.length; arrayIndex++) {
+      if (!(arrays[0][index] in arraysDicts[arrayIndex])) {
+        flag = false;
+
+        break;
+      }
+    }
+
+    if (flag) {
+      res.push(arrays[0][index]);
+    }
+  }
+
+  return res;
 };
 
 export const getMatchWords = ({mask, antiMask, hasLetters, noLetters}) => {
@@ -38,8 +74,16 @@ export const getMatchWords = ({mask, antiMask, hasLetters, noLetters}) => {
     WORDS;
 
   const filteredByAntiMaskWords = antiMask ?
-    filteredByMaskWords.filter((word) => getByAntiMask(word, antiMask)) :
-    filteredByMaskWords;
+    WORDS.filter((word) => getByAntiMask(word, antiMask)) :
+    WORDS;
 
-  return filteredByAntiMaskWords.filter((word) => getByKnownLetters(word, hasLetters, noLetters));
+  const filteredByHasLetters = WORDS.filter((word) => getByHasLetters(word, hasLetters));
+  const filteredByNoLetters = WORDS.filter((word) => getByNoLetters(word, noLetters));
+
+  return intersections(
+    filteredByMaskWords,
+    filteredByAntiMaskWords,
+    filteredByHasLetters,
+    filteredByNoLetters
+  );
 };
