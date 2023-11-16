@@ -18,6 +18,14 @@ import {
 } from 'firebase/firestore';
 
 const signUp = async(email, password) => {
+  // убрать заглушку при релизе
+  if (email !== 'archywink@ya.ru') {
+    return console.log({
+      type: 'error',
+      message: 'В регистрации нового пользователя отказано'
+    });
+  }
+
   const {user} = await createUserWithEmailAndPassword(auth, email, password);
 
   return user;
