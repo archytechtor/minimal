@@ -21,8 +21,7 @@ const authRoutes = [
   {
     path: ROUTES.ZEMS_COURSE,
     element: <ZemsCoursePage />
-  },
-
+  }
 ];
 
 const publicRoutes = [

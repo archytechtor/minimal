@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {magic} from '@utils';
 import MaskInput from './MaskInput';
 
 const Mask = ({mask, setMask}) => {
@@ -36,9 +37,16 @@ const Mask = ({mask, setMask}) => {
   );
 };
 
+const mapStore = ({FiveLettersStore}) => {
+  return {
+    mask: FiveLettersStore.mask,
+    setMask: FiveLettersStore.setMask
+  };
+};
+
 Mask.propTypes = {
   mask: PropTypes.object,
   setMask: PropTypes.func
 };
 
-export default Mask;
+export default magic(Mask, {store: mapStore});

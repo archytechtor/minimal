@@ -16,11 +16,12 @@ import {
   orderBy,
   onSnapshot
 } from 'firebase/firestore';
+import {message} from '@ui';
 
 const signUp = async(email, password) => {
   // убрать заглушку при релизе
-  if (email !== 'archywink@ya.ru') {
-    return console.log({
+  if (email !== process.env.EMAIL) {
+    return message({
       type: 'error',
       message: 'В регистрации нового пользователя отказано'
     });

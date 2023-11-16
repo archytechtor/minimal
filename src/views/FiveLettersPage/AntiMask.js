@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {magic} from '@utils';
 import AntiMaskInput from './AntiMaskInput';
 
 const AntiMask = ({mask, setMask}) => {
@@ -37,9 +38,16 @@ const AntiMask = ({mask, setMask}) => {
   );
 };
 
+const mapStore = ({FiveLettersStore}) => {
+  return {
+    mask: FiveLettersStore.antiMask,
+    setMask: FiveLettersStore.setAntiMask
+  };
+};
+
 AntiMask.propTypes = {
   mask: PropTypes.object,
   setMask: PropTypes.func
 };
 
-export default AntiMask;
+export default magic(AntiMask, {store: mapStore});

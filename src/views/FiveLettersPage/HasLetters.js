@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {magic} from '@utils';
 import {Button} from '@ui';
 
 /* eslint-disable array-element-newline */
@@ -100,6 +101,15 @@ const HasLetters = ({hasLetters, setHasLetters, noLetters, setNoLetters}) => {
   );
 };
 
+const mapStore = ({FiveLettersStore}) => {
+  return {
+    hasLetters: FiveLettersStore.hasLetters,
+    setHasLetters: FiveLettersStore.setHasLetters,
+    noLetters: FiveLettersStore.noLetters,
+    setNoLetters: FiveLettersStore.setNoLetters
+  };
+};
+
 HasLetters.propTypes = {
   hasLetters: PropTypes.array,
   setHasLetters: PropTypes.func,
@@ -107,4 +117,4 @@ HasLetters.propTypes = {
   setNoLetters: PropTypes.func
 };
 
-export default HasLetters;
+export default magic(HasLetters, {store: mapStore});
