@@ -39,7 +39,7 @@ const FiveLettersPage = () => {
   };
 
   return (
-    <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%'}}>
+    <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%', marginTop: 20}}>
       <Mask mask={mask} setMask={setMask} />
       <AntiMask mask={antiMask} setMask={setAntiMask} />
       <HasLetters
