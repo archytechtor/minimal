@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 const Message = ({type, message}) => {
   if (type === 'error') {
-    return console.error({type, message});
+    return console.error(message);
   }
 
   if (type === 'warn') {
-    return console.warn({type, message});
+    return console.warn(message);
   }
 
-  return console.log({type, message});
+  return console.log(message);
 };
 
 export default Message;
