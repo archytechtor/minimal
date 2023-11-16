@@ -7,11 +7,17 @@ const Mask = ({mask, setMask}) => {
   const handleChange = (event) => {
     setMask({
       ...mask,
-      [event.target.name]: event.target.value || '*'
+      [event.target.name]: event.target.value
     });
   };
 
-  const handleFocus = (event) => event.target.select();
+  const handleFocus = (event) => {
+    const value = mask[event.target.name];
+
+    if (value === '*') {
+      return event.target.select();
+    }
+  };
 
   const style = {
     display: 'flex',
@@ -27,11 +33,17 @@ const Mask = ({mask, setMask}) => {
         {'Точное положение букв'}
       </div>
       <div style={{display: 'flex', gap: 5}}>
-        <MaskInput mask={mask} name={'1'} onChange={handleChange} onFocus={handleFocus} />
-        <MaskInput mask={mask} name={'2'} onChange={handleChange} onFocus={handleFocus} />
-        <MaskInput mask={mask} name={'3'} onChange={handleChange} onFocus={handleFocus} />
-        <MaskInput mask={mask} name={'4'} onChange={handleChange} onFocus={handleFocus} />
-        <MaskInput mask={mask} name={'5'} onChange={handleChange} onFocus={handleFocus} />
+        {
+          Object.keys(mask).map((key) => (
+            <MaskInput
+              key={key}
+              mask={mask}
+              name={key}
+              onChange={handleChange}
+              onFocus={handleFocus}
+            />
+          ))
+        }
       </div>
     </div>
   );

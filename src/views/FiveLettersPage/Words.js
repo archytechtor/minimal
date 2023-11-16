@@ -8,23 +8,24 @@ const Words = ({show, matchWords}) => {
     gap: 10,
     flexFlow: 'row wrap',
     maxWidth: '400px',
-    maxHeight: '400px',
+    maxHeight: '350px',
     overflowX: 'hidden',
     overflowY: 'scroll',
     fontFamily: 'monospace',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 20
   };
+
+  if (!show) {
+    return null;
+  }
 
   return (
     <React.Fragment>
-      {
-        show && (
-          <div>
-            {`Найдено слов: ${matchWords.length}`}
-          </div>
-        )
-      }
+      <div>
+        {`Найдено слов: ${matchWords.length}`}
+      </div>
       <div
         style={wordsBlockStyle}
         className={'no-scrollbar'}

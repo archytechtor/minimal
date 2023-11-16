@@ -5,37 +5,13 @@ import {Button} from '@ui';
 
 /* eslint-disable array-element-newline */
 const letters = [
-  ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и'],
-  ['й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т'],
-  ['у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь'],
-  ['э', 'ю', 'я']
+  ['а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з'],
+  ['и', 'й', 'к', 'л', 'м', 'н', 'о', 'п'],
+  ['р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч'],
+  ['ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
 ];
 
-const HasLetters = ({hasLetters, setHasLetters, noLetters, setNoLetters}) => {
-  const handleClick = (letter, has) => {
-    if (has) {
-      const isAdded = hasLetters.includes(letter);
-
-      if (isAdded) {
-        return setHasLetters(hasLetters.filter((hasLetter) => hasLetter !== letter));
-      }
-
-      setHasLetters([...hasLetters, letter]);
-
-      return setNoLetters(noLetters.filter((noLetter) => noLetter !== letter));
-    }
-
-    const isAdded = noLetters.includes(letter);
-
-    if (isAdded) {
-      return setNoLetters(noLetters.filter((noLetter) => noLetter !== letter));
-    }
-
-    setNoLetters([...noLetters, letter]);
-
-    return setHasLetters(hasLetters.filter((hasLetter) => hasLetter !== letter));
-  };
-
+const HasLetters = ({hasLetters, addHasLetters, noLetters, addNoLetters}) => {
   const style = {
     display: 'flex',
     gap: 5,
@@ -54,7 +30,7 @@ const HasLetters = ({hasLetters, setHasLetters, noLetters, setNoLetters}) => {
         {
           letters.map((row) => (
             <div
-              style={{display: 'flex', gap: 5}}
+              style={{display: 'flex', gap: 5, justifyContent: 'center'}}
               key={`has${row}`}
             >
               {
@@ -64,7 +40,7 @@ const HasLetters = ({hasLetters, setHasLetters, noLetters, setNoLetters}) => {
                     icon={letter}
                     inverse={!hasLetters.includes(letter)}
                     color={'gold'}
-                    onClick={() => handleClick(letter, true)}
+                    onClick={() => addHasLetters(letter)}
                   />
                 ))
               }
@@ -79,7 +55,7 @@ const HasLetters = ({hasLetters, setHasLetters, noLetters, setNoLetters}) => {
         {
           letters.map((row) => (
             <div
-              style={{display: 'flex', gap: 5}}
+              style={{display: 'flex', gap: 5, justifyContent: 'center'}}
               key={`no${row}`}
             >
               {
@@ -89,7 +65,7 @@ const HasLetters = ({hasLetters, setHasLetters, noLetters, setNoLetters}) => {
                     icon={letter}
                     inverse={!noLetters.includes(letter)}
                     color={'red'}
-                    onClick={() => handleClick(letter)}
+                    onClick={() => addNoLetters(letter)}
                   />
                 ))
               }
@@ -104,17 +80,17 @@ const HasLetters = ({hasLetters, setHasLetters, noLetters, setNoLetters}) => {
 const mapStore = ({FiveLettersStore}) => {
   return {
     hasLetters: FiveLettersStore.hasLetters,
-    setHasLetters: FiveLettersStore.setHasLetters,
+    addHasLetters: FiveLettersStore.addHasLetters,
     noLetters: FiveLettersStore.noLetters,
-    setNoLetters: FiveLettersStore.setNoLetters
+    addNoLetters: FiveLettersStore.addNoLetters
   };
 };
 
 HasLetters.propTypes = {
   hasLetters: PropTypes.array,
-  setHasLetters: PropTypes.func,
+  addHasLetters: PropTypes.func,
   noLetters: PropTypes.array,
-  setNoLetters: PropTypes.func
+  addNoLetters: PropTypes.func
 };
 
 export default magic(HasLetters, {store: mapStore});

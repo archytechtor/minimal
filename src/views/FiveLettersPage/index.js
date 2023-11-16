@@ -3,7 +3,7 @@ import Mask from './Mask';
 import AntiMask from './AntiMask';
 import HasLetters from './HasLetters';
 import Words from './Words';
-import FoundButton from './FoundButton';
+import Buttons from './Buttons';
 
 const FiveLettersPage = () => {
   // TODO: когда будет не лень отрефакторить эту вьюху
@@ -30,7 +30,7 @@ const FiveLettersPage = () => {
       <AntiMask />
       <HasLetters />
       <div style={foundBlockStyle}>
-        <FoundButton />
+        <Buttons />
         <Words />
       </div>
     </div>
