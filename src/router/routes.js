@@ -22,10 +22,7 @@ const authRoutes = [
     path: ROUTES.ZEMS_COURSE,
     element: <ZemsCoursePage />
   },
-  {
-    path: ROUTES.FIVE_LETTERS,
-    element: <FiveLettersPage />
-  }
+
 ];
 
 const publicRoutes = [
@@ -36,6 +33,10 @@ const publicRoutes = [
   {
     path: ROUTES.SIGN_UP,
     element: <AuthPage />
+  },
+  {
+    path: ROUTES.FIVE_LETTERS,
+    element: <FiveLettersPage />
   },
   {
     path: ROUTES.NOT_FOUND_404,
