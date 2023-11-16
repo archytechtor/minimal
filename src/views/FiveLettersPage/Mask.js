@@ -12,8 +12,16 @@ const Mask = ({mask, setMask}) => {
 
   const handleFocus = (event) => event.target.select();
 
+  const style = {
+    display: 'flex',
+    gap: 5,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  };
+
   return (
-    <div style={{padding: 20, display: 'flex', gap: 5, flexDirection: 'column'}}>
+    <div style={style}>
       <div>
         {'Точное положение букв'}
       </div>

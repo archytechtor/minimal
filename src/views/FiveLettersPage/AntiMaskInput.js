@@ -19,6 +19,7 @@ const MaskInput = ({mask, name, onChange, onFocus}) => {
     textAlign: 'center',
     fontSize: '20px',
     textTransform: 'uppercase',
+    maxWidth: '400px',
     background,
     color
   };

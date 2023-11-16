@@ -39,7 +39,7 @@ const FiveLettersPage = () => {
   };
 
   return (
-    <div>
+    <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%'}}>
       <Mask mask={mask} setMask={setMask} />
       <AntiMask mask={antiMask} setMask={setAntiMask} />
       <HasLetters
@@ -48,7 +48,18 @@ const FiveLettersPage = () => {
         noLetters={noLetters}
         setNoLetters={setNoLetters}
       />
-      <div style={{padding: 20, display: 'flex', gap: 20, flexDirection: 'column'}}>
+      <div
+        style={
+          {
+            display: 'flex',
+            gap: 10,
+            flexDirection: 'column',
+            marginTop: 20,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }
+        }
+      >
         <Button
           onClick={find}
           color={'green'}
@@ -72,7 +83,9 @@ const FiveLettersPage = () => {
               maxHeight: '400px',
               overflowX: 'hidden',
               overflowY: 'scroll',
-              fontFamily: 'monospace'
+              fontFamily: 'monospace',
+              justifyContent: 'center',
+              alignItems: 'center'
             }
           }
           className={'no-scrollbar'}

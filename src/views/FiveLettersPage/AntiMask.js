@@ -12,12 +12,21 @@ const AntiMask = ({mask, setMask}) => {
 
   const handleFocus = (event) => event.target.select();
 
+  const style = {
+    display: 'flex',
+    gap: 5,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20
+  };
+
   return (
-    <div style={{padding: 20, display: 'flex', gap: 5, flexDirection: 'column'}}>
+    <div style={style}>
       <div>
         {'Точное отсутствие букв'}
       </div>
-      <div style={{display: 'flex', gap: 5}}>
+      <div style={{display: 'flex', gap: 5, flexDirection: 'column'}}>
         <AntiMaskInput mask={mask} name={'1'} onChange={handleChange} onFocus={handleFocus} />
         <AntiMaskInput mask={mask} name={'2'} onChange={handleChange} onFocus={handleFocus} />
         <AntiMaskInput mask={mask} name={'3'} onChange={handleChange} onFocus={handleFocus} />
