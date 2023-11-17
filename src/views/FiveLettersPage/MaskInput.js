@@ -13,8 +13,8 @@ const MaskInput = ({mask, name, onChange, onFocus}) => {
     '#a9acb7';
 
   const style = {
-    width: '40px',
-    height: '40px',
+    height: '36px',
+    width: '36px',
     borderRadius: '5px',
     border: 'none',
     textAlign: 'center',

@@ -13,13 +13,13 @@ const MaskInput = ({mask, name, onChange, onFocus}) => {
     '#a9acb7';
 
   const style = {
-    height: '40px',
+    height: '36px',
+    width: '72px',
     borderRadius: '5px',
     border: 'none',
     textAlign: 'center',
-    fontSize: '20px',
+    fontSize: '18px',
     textTransform: 'uppercase',
-    maxWidth: '400px',
     background,
     color
   };
@@ -30,6 +30,7 @@ const MaskInput = ({mask, name, onChange, onFocus}) => {
       value={value}
       onChange={onChange}
       onFocus={onFocus}
+      maxLength={4}
       autoComplete={'off'}
       style={style}
     />

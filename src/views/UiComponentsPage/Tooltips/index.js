@@ -3,7 +3,7 @@ import {magic} from '@utils';
 import {Tooltip} from '@ui';
 import PropsControl from './PropsControl';
 import cn from 'classnames';
-import s from './style';
+import s from './style.scss';
 
 const positions = [
   'top-left',

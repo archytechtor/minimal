@@ -28,12 +28,20 @@ const AntiMask = ({mask, setMask}) => {
     marginTop: 20
   };
 
+  const titleStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  };
+
   return (
     <div style={style}>
-      <div>
-        {'Точное отсутствие букв'}
+      <div style={titleStyle}>
+        <span>{'Буквы, которые есть в слове, но точно'}</span>
+        <span>{'находятся не на данных позициях'}</span>
       </div>
-      <div style={{display: 'flex', gap: 5, flexDirection: 'column'}}>
+      <div style={{display: 'flex', gap: 5}}>
         {
           Object.keys(mask).map((key) => (
             <AntiMaskInput

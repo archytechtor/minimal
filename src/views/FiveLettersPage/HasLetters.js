@@ -11,7 +11,7 @@ const letters = [
   ['ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
 ];
 
-const HasLetters = ({hasLetters, addHasLetters, noLetters, addNoLetters}) => {
+const HasLetters = ({addedLetters, addHasLetters, noLetters, addNoLetters}) => {
   const style = {
     display: 'flex',
     gap: 5,
@@ -38,7 +38,7 @@ const HasLetters = ({hasLetters, addHasLetters, noLetters, addNoLetters}) => {
                   <Button
                     key={`has${letter}`}
                     icon={letter}
-                    inverse={!hasLetters.includes(letter)}
+                    inverse={!addedLetters.includes(letter)}
                     color={'gold'}
                     onClick={() => addHasLetters(letter)}
                   />
@@ -79,7 +79,7 @@ const HasLetters = ({hasLetters, addHasLetters, noLetters, addNoLetters}) => {
 
 const mapStore = ({FiveLettersStore}) => {
   return {
-    hasLetters: FiveLettersStore.hasLetters,
+    addedLetters: FiveLettersStore.addedLetters,
     addHasLetters: FiveLettersStore.addHasLetters,
     noLetters: FiveLettersStore.noLetters,
     addNoLetters: FiveLettersStore.addNoLetters
@@ -87,7 +87,7 @@ const mapStore = ({FiveLettersStore}) => {
 };
 
 HasLetters.propTypes = {
-  hasLetters: PropTypes.array,
+  addedLetters: PropTypes.array,
   addHasLetters: PropTypes.func,
   noLetters: PropTypes.array,
   addNoLetters: PropTypes.func

@@ -1,11 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {magic} from '@utils';
 import Mask from './Mask';
 import AntiMask from './AntiMask';
 import HasLetters from './HasLetters';
 import Words from './Words';
 import Buttons from './Buttons';
 
-const FiveLettersPage = () => {
+const FiveLettersPage = ({closeStore}) => {
+  React.useEffect(() => () => closeStore(), []);
+
   // TODO: когда будет не лень отрефакторить эту вьюху
   const containerStyle = {
     display: 'flex',
@@ -37,4 +41,14 @@ const FiveLettersPage = () => {
   );
 };
 
-export default FiveLettersPage;
+const mapStore = ({FiveLettersStore}) => {
+  return {
+    closeStore: FiveLettersStore.closeStore
+  };
+};
+
+FiveLettersPage.propTypes = {
+  closeStore: PropTypes.func
+};
+
+export default magic(FiveLettersPage, {store: mapStore});

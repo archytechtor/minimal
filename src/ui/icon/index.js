@@ -82,7 +82,13 @@ const Icon = (props) => {
 };
 
 Icon.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.oneOf([
+    'brands',
+    'duotone',
+    'light',
+    'regular',
+    'solid'
+  ]),
   name: PropTypes.string,
   className: PropTypes.string,
   spin: PropTypes.bool,

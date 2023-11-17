@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx';
+import {makeObservable, observable, action, computed, reaction} from 'mobx';
 import {getMatchWords} from '@utils';
 
 const DEFAULT_MASK = {
@@ -9,7 +9,7 @@ const DEFAULT_MASK = {
   '5': '*'
 };
 
-export default class FiveLettersStore {
+class FiveLettersStore {
   mask = DEFAULT_MASK;
   antiMask = DEFAULT_MASK;
   hasLetters = [];
@@ -17,9 +17,54 @@ export default class FiveLettersStore {
   matchWords = [];
   show = false;
 
+  disposers = [];
+
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this, {
+      addedLetters: computed,
+
+      mask: observable,
+      antiMask: observable,
+      hasLetters: observable,
+      noLetters: observable,
+      matchWords: observable,
+      show: observable,
+
+      setMask: action,
+      setAntiMask: action,
+      setHasLetters: action,
+      setNoLetters: action,
+      setMatchWords: action,
+      setShow: action
+    });
+
+    this.disposers.push(
+      reaction(
+        () => [this.mask, this.antiMask, this.hasLetters],
+        () => this.removeFromNoLetters()
+      ),
+      reaction(
+        () => [this.noLetters],
+        () => this.removeFromMasksAndHasLetters()
+      )
+    );
   }
+
+  // COMPUTES AND GETTERS
+
+  get addedLetters() {
+    const addedLetters = [
+      ...new Set([
+        ...Object.values(this.mask),
+        ...Object.values(this.antiMask).flatMap((letters) => letters.split('')),
+        ...this.hasLetters
+      ])
+    ];
+
+    return addedLetters.filter((letter) => letter && letter !== '*');
+  }
+
+  // ACTIONS
 
   setMask = (mask, withoutCheck) => {
     this.mask = mask;
@@ -61,9 +106,11 @@ export default class FiveLettersStore {
     this.show = state;
   };
 
+  // HANDLERS
+
   clear = () => {
-    this.setMask(DEFAULT_MASK);
-    this.setAntiMask(DEFAULT_MASK);
+    this.setMask(DEFAULT_MASK, true);
+    this.setAntiMask(DEFAULT_MASK, true);
     this.setHasLetters([]);
     this.setNoLetters([]);
     this.setMatchWords([]);
@@ -71,18 +118,72 @@ export default class FiveLettersStore {
   };
 
   findWords = () => {
-    const {mask, antiMask, hasLetters, noLetters} = this;
+    const {mask, antiMask, noLetters} = this;
 
     const words = getMatchWords({
       mask: Object.values(this.prepareMask(mask)).join(''),
       antiMask: Object.values(this.prepareMask(antiMask)),
-      hasLetters,
+      hasLetters: this.addedLetters,
       noLetters
     });
 
     this.setMatchWords(words);
     this.setShow(true);
   };
+
+  addHasLetters = (letter) => {
+    const {hasLetters} = this;
+
+    if (hasLetters.includes(letter)) {
+      return this.setHasLetters(hasLetters.filter((hasLetter) => hasLetter !== letter));
+    }
+
+    return this.setHasLetters([...hasLetters, letter]);
+  };
+
+  addNoLetters = (letter) => {
+    const {noLetters} = this;
+
+    if (noLetters.includes(letter)) {
+      return this.setNoLetters(noLetters.filter((noLetter) => noLetter !== letter));
+    }
+
+    return this.setNoLetters([...noLetters, letter]);
+  };
+
+  checkMasks = (addedMask, type) => {
+    const {mask, antiMask} = this;
+
+    if (type === 'antiMask') {
+      const newMask = {...mask};
+
+      Object.entries(addedMask).forEach(([position, letters]) => {
+        const letter = newMask[position];
+
+        if (letter !== '*' && letters.includes(letter)) {
+          newMask[position] = '*';
+        }
+      });
+
+      return this.setMask(newMask, true);
+    }
+
+    const newMask = {...antiMask};
+
+    Object.entries(addedMask).forEach(([position, letter]) => {
+      const letters = newMask[position];
+
+      if (letters !== '*') {
+        const newLetters = letters.replace(letter, '');
+
+        newMask[position] = newLetters || '*';
+      }
+    });
+
+    return this.setAntiMask(newMask, true);
+  };
+
+  // FORMATTERS
 
   prepareMask = (mask) =>
     Object.fromEntries(
@@ -95,65 +196,55 @@ export default class FiveLettersStore {
       })
     );
 
-  addHasLetters = (letter) => {
-    const {hasLetters, noLetters} = this;
+  // DISPOSERS
 
-    if (hasLetters.includes(letter)) {
-      return this.setHasLetters(
-        hasLetters.filter((hasLetter) => hasLetter !== letter)
-      );
+  removeFromNoLetters = () => {
+    const {noLetters} = this;
+
+    if (this.addedLetters.some((letter) => noLetters.includes(letter))) {
+      this.setNoLetters(noLetters.filter((noLetter) => !this.addedLetters.includes(noLetter)));
     }
-
-    this.setHasLetters([...hasLetters, letter]);
-
-    return this.setNoLetters(
-      noLetters.filter((noLetter) => noLetter !== letter)
-    );
   };
 
-  addNoLetters = (letter) => {
-    const {hasLetters, noLetters} = this;
+  removeFromMasksAndHasLetters = () => {
+    const {noLetters, mask, antiMask, hasLetters} = this;
 
-    if (noLetters.includes(letter)) {
-      return this.setNoLetters(
-        noLetters.filter((noLetter) => noLetter !== letter)
+    if (this.addedLetters.some((letter) => noLetters.includes(letter))) {
+      this.setHasLetters(hasLetters.filter((letter) => !noLetters.includes(letter)));
+
+      this.setMask(
+        Object.fromEntries(
+          Object.entries(mask).map(([position, letter]) => {
+            if (noLetters.includes(letter)) {
+              return [position, '*'];
+            }
+
+            return [position, letter];
+          })
+        ),
+        true
+      );
+
+      this.setAntiMask(
+        Object.fromEntries(
+          Object.entries(antiMask).map(([position, letters]) => {
+            if ([...letters].some((letter) => noLetters.includes(letter))) {
+              const regex = new RegExp(noLetters.join('|'), 'gi');
+
+              return [position, letters.replace(regex, '')];
+            }
+
+            return [position, letters];
+          })
+        ),
+        true
       );
     }
-
-    this.setNoLetters([...noLetters, letter]);
-
-    return this.setHasLetters(
-      hasLetters.filter((hasLetter) => hasLetter !== letter)
-    );
   };
 
-  checkMasks = (addedMask, type) => {
-    const {mask, antiMask} = this;
-
-    if (type === 'antiMask') {
-      const newMask = {...mask};
-
-      Object.entries(addedMask).forEach(([key, value]) => {
-        const letter = newMask[key];
-
-        if (letter !== '*' && value.includes(letter)) {
-          newMask[key] = '*';
-        }
-      });
-
-      return this.setMask(newMask, true);
-    }
-
-    const newMask = {...antiMask};
-
-    Object.entries(addedMask).forEach(([key, value]) => {
-      const letters = newMask[key];
-
-      if (letters !== '*') {
-        newMask[key] = letters.replace(value, '');
-      }
-    });
-
-    return this.setAntiMask(newMask, true);
+  closeStore = () => {
+    this.disposers.forEach((disposer) => disposer());
   };
 }
+
+export default FiveLettersStore;
