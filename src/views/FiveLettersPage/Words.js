@@ -3,9 +3,18 @@ import PropTypes from 'prop-types';
 import {magic} from '@utils';
 import s from './style.scss';
 
-const Words = ({show, matchWords}) => {
-  if (!show) {
+const Words = ({error, show, matchWords}) => {
+  if (!show && !error) {
     return null;
+  }
+
+  if (error) {
+    return (
+      <div className={s.error}>
+        <span>{'Чтобы выполнить поиск'}</span>
+        <span>{'необходимо заполнить вводные данные'}</span>
+      </div>
+    );
   }
 
   return (
@@ -28,12 +37,14 @@ const Words = ({show, matchWords}) => {
 
 const mapStore = ({FiveLettersStore}) => {
   return {
+    error: FiveLettersStore.error,
     show: FiveLettersStore.show,
     matchWords: FiveLettersStore.matchWords
   };
 };
 
 Words.propTypes = {
+  error: PropTypes.bool,
   show: PropTypes.bool,
   matchWords: PropTypes.arrayOf(PropTypes.string)
 };

@@ -16,6 +16,7 @@ class FiveLettersStore {
   noLetters = [];
   matchWords = [];
   show = false;
+  error = false;
 
   disposers = [];
 
@@ -29,13 +30,15 @@ class FiveLettersStore {
       noLetters: observable,
       matchWords: observable,
       show: observable,
+      error: observable,
 
       setMask: action,
       setAntiMask: action,
       setHasLetters: action,
       setNoLetters: action,
       setMatchWords: action,
-      setShow: action
+      setShow: action,
+      setError: action
     });
 
     this.disposers.push(
@@ -106,6 +109,10 @@ class FiveLettersStore {
     this.show = state;
   };
 
+  setError = (state) => {
+    this.error = state;
+  };
+
   // HANDLERS
 
   clear = () => {
@@ -115,10 +122,15 @@ class FiveLettersStore {
     this.setNoLetters([]);
     this.setMatchWords([]);
     this.setShow(false);
+    this.setError(false);
   };
 
   findWords = () => {
     const {mask, antiMask, noLetters} = this;
+
+    if (!noLetters.length && !this.addedLetters.length) {
+      return this.setError(true);
+    }
 
     const words = getMatchWords({
       mask: Object.values(this.prepareMask(mask)).join(''),
@@ -128,6 +140,7 @@ class FiveLettersStore {
     });
 
     this.setMatchWords(words);
+    this.setError(false);
     this.setShow(true);
   };
 

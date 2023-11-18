@@ -5,7 +5,6 @@ import {
 } from 'firebase/auth';
 import {
   addDoc,
-  setDoc,
   getDoc,
   getDocs,
   updateDoc,
@@ -48,13 +47,13 @@ const create = async(collectionName, data, key) => {
       if (typeof item === 'object') {
         batch.set(doc(collection(db, collectionName)), item);
       } else {
-        batch.set(doc(collection(db, collectionName)), {[key]: item});
+        batch.set(doc(collection(db, collectionName)), key ? {[key]: item} : {item});
       }
-    })
+    });
 
     await batch.commit();
   } else {
-    const {id} = await setDoc(doc(collection(db, collectionName)), data);
+    const {id} = await addDoc(collection(db, collectionName), data);
 
     return id;
   }
