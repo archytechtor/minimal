@@ -1,28 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {magic} from '@utils';
+import cn from 'classnames';
+import s from './style.scss';
 
 const MaskInput = ({mask, name, onChange, onFocus}) => {
   const value = mask[name];
-
-  const background = value && value !== '*' ?
-    '#f8646c' :
-    '#353639';
-
-  const color = value && value !== '*' ?
-    '#1e1f22' :
-    '#a9acb7';
-
-  const style = {
-    height: '36px',
-    width: '72px',
-    borderRadius: '5px',
-    border: 'none',
-    textAlign: 'center',
-    fontSize: '18px',
-    textTransform: 'uppercase',
-    background,
-    color
-  };
+  const className = cn(s.input, {[s.fullFilled]: value && value !== '*'});
 
   return (
     <input
@@ -32,7 +16,7 @@ const MaskInput = ({mask, name, onChange, onFocus}) => {
       onFocus={onFocus}
       maxLength={4}
       autoComplete={'off'}
-      style={style}
+      className={className}
     />
   );
 };
@@ -44,4 +28,4 @@ MaskInput.propTypes = {
   onFocus: PropTypes.func
 };
 
-export default MaskInput;
+export default magic(MaskInput, {styles: s});

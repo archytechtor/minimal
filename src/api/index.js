@@ -5,6 +5,7 @@ import {
 } from 'firebase/auth';
 import {
   addDoc,
+  setDoc,
   getDoc,
   getDocs,
   updateDoc,
@@ -14,7 +15,8 @@ import {
   query,
   where,
   orderBy,
-  onSnapshot
+  onSnapshot,
+  writeBatch
 } from 'firebase/firestore';
 import {message} from '@ui';
 
@@ -38,10 +40,24 @@ const signIn = async(email, password) => {
   return user;
 };
 
-const create = async(collectionName, data) => {
-  const {id} = await addDoc(collection(db, collectionName), data);
+const create = async(collectionName, data, key) => {
+  if (Array.isArray(data)) {
+    const batch = writeBatch(db);
 
-  return id;
+    data.forEach((item) => {
+      if (typeof item === 'object') {
+        batch.set(doc(collection(db, collectionName)), item);
+      } else {
+        batch.set(doc(collection(db, collectionName)), {[key]: item});
+      }
+    })
+
+    await batch.commit();
+  } else {
+    const {id} = await setDoc(doc(collection(db, collectionName)), data);
+
+    return id;
+  }
 };
 
 const get = async(collectionName, id) => {

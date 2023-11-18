@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {magic} from '@utils';
 import {Button} from '@ui';
+import s from './style.scss';
 
 const Buttons = ({findWords, clear}) => (
-  <div style={{display: 'flex', gap: 40, justifyContent: 'center', alignItems: 'center'}}>
+  <div className={s.buttons}>
     <Button
       onClick={findWords}
       color={'green'}
@@ -32,4 +33,4 @@ Buttons.propTypes = {
   clear: PropTypes.func
 };
 
-export default magic(Buttons, {store: mapStore});
+export default magic(Buttons, {store: mapStore, styles: s});

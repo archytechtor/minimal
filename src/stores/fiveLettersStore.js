@@ -1,5 +1,5 @@
 import {makeObservable, observable, action, computed, reaction} from 'mobx';
-import {getMatchWords} from '@utils';
+import {getMatchWords, keyboardConvert} from '@utils';
 
 const DEFAULT_MASK = {
   '1': '*',
@@ -181,6 +181,34 @@ class FiveLettersStore {
     });
 
     return this.setAntiMask(newMask, true);
+  };
+
+  focusMask = (event) => event.target.select();
+
+  changeMask = (event) => {
+    const value = keyboardConvert(event.target.value);
+
+    this.setMask({
+      ...this.mask,
+      [event.target.name]: value
+    });
+  };
+
+  focusAntiMask = (event) => {
+    const value = this.antiMask[event.target.name];
+
+    if (value === '*') {
+      return event.target.select();
+    }
+  };
+
+  changeAntiMask = (event) => {
+    const value = keyboardConvert(event.target.value);
+
+    this.setAntiMask({
+      ...this.antiMask,
+      [event.target.name]: value
+    });
   };
 
   // FORMATTERS

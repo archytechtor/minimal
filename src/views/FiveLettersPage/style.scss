@@ -1,0 +1,125 @@
+@import '../../styles/colors.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  gap: 20px;
+
+  .mask {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    .letters {
+      display: flex;
+      gap: 5px;
+
+      .input {
+        height: 36px;
+        width: 36px;
+        border-radius: 5px;
+        border: none;
+        text-align: center;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: $text-main;
+        background: $like-white-10;
+
+        &.fullFilled {
+          color: $bg-main;
+          background: $gold-light;
+        }
+      }
+    }
+  }
+
+  .antiMask {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .letters {
+      display: flex;
+      gap: 5px;
+
+      .input {
+        height: 36px;
+        width: 72px;
+        border-radius: 5px;
+        border: none;
+        text-align: center;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: $text-main;
+        background: $like-white-10;
+
+        &.fullFilled {
+          color: $bg-main;
+          background: $red-light;
+        }
+      }
+    }
+  }
+
+  .lettersBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    .rows {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .row {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px
+  }
+
+  .words {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    gap: 10px;
+    max-width: 400px;
+    max-height: 350px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-family: monospace;
+
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+  }
+}
+

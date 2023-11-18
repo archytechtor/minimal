@@ -3,52 +3,52 @@ import PropTypes from 'prop-types';
 import {magic} from '@utils';
 import Mask from './Mask';
 import AntiMask from './AntiMask';
-import HasLetters from './HasLetters';
+import Letters from './Letters';
 import Words from './Words';
 import Buttons from './Buttons';
+import s from './style.scss';
 
-const FiveLettersPage = ({closeStore}) => {
+const FiveLettersPage = ({closeStore, addedLetters, addHasLetters, noLetters, addNoLetters}) => {
   React.useEffect(() => () => closeStore(), []);
 
-  // TODO: когда будет не лень отрефакторить эту вьюху
-  const containerStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-    width: '100%',
-    marginTop: 20
-  };
-
-  const foundBlockStyle = {
-    display: 'flex',
-    gap: 10,
-    flexDirection: 'column',
-    marginTop: 20,
-    justifyContent: 'center',
-    alignItems: 'center'
-  };
-
   return (
-    <div style={containerStyle}>
+    <div className={s.container}>
       <Mask />
       <AntiMask />
-      <HasLetters />
-      <div style={foundBlockStyle}>
-        <Buttons />
-        <Words />
-      </div>
+      <Letters
+        title={'Буквы, которые точно есть в слове'}
+        color={'gold'}
+        letters={addedLetters}
+        onClick={addHasLetters}
+      />
+      <Letters
+        title={'Буквы, которых точно нет в слове'}
+        color={'red'}
+        letters={noLetters}
+        onClick={addNoLetters}
+      />
+      <Buttons />
+      <Words />
     </div>
   );
 };
 
 const mapStore = ({FiveLettersStore}) => {
   return {
-    closeStore: FiveLettersStore.closeStore
+    closeStore: FiveLettersStore.closeStore,
+    addedLetters: FiveLettersStore.addedLetters,
+    addHasLetters: FiveLettersStore.addHasLetters,
+    noLetters: FiveLettersStore.noLetters,
+    addNoLetters: FiveLettersStore.addNoLetters
   };
 };
 
 FiveLettersPage.propTypes = {
-  closeStore: PropTypes.func
+  closeStore: PropTypes.func,
+  addedLetters: PropTypes.array,
+  addHasLetters: PropTypes.func,
+  noLetters: PropTypes.array,
+  addNoLetters: PropTypes.func
 };
 
-export default magic(FiveLettersPage, {store: mapStore});
+export default magic(FiveLettersPage, {store: mapStore, styles: s});

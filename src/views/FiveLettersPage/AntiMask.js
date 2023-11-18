@@ -2,72 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {magic} from '@utils';
 import AntiMaskInput from './AntiMaskInput';
+import s from './style.scss';
 
-const AntiMask = ({mask, setMask}) => {
-  const handleChange = (event) => {
-    setMask({
-      ...mask,
-      [event.target.name]: event.target.value
-    });
-  };
-
-  const handleFocus = (event) => {
-    const value = mask[event.target.name];
-
-    if (value === '*') {
-      return event.target.select();
-    }
-  };
-
-  const style = {
-    display: 'flex',
-    gap: 5,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20
-  };
-
-  const titleStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  };
-
-  return (
-    <div style={style}>
-      <div style={titleStyle}>
-        <span>{'Буквы, которые есть в слове, но точно'}</span>
-        <span>{'находятся не на данных позициях'}</span>
-      </div>
-      <div style={{display: 'flex', gap: 5}}>
-        {
-          Object.keys(mask).map((key) => (
-            <AntiMaskInput
-              key={key}
-              mask={mask}
-              name={key}
-              onChange={handleChange}
-              onFocus={handleFocus}
-            />
-          ))
-        }
-      </div>
+const AntiMask = ({mask, changeAntiMask, focusAntiMask}) => (
+  <div className={s.antiMask}>
+    <div className={s.title}>
+      <span>{'Буквы, которые есть в слове, но точно'}</span>
+      <span>{'находятся не на данных позициях'}</span>
     </div>
-  );
-};
+    <div className={s.letters}>
+      {
+        Object.keys(mask).map((key) => (
+          <AntiMaskInput
+            key={key}
+            mask={mask}
+            name={key}
+            onChange={changeAntiMask}
+            onFocus={focusAntiMask}
+          />
+        ))
+      }
+    </div>
+  </div>
+);
 
 const mapStore = ({FiveLettersStore}) => {
   return {
     mask: FiveLettersStore.antiMask,
-    setMask: FiveLettersStore.setAntiMask
+    changeAntiMask: FiveLettersStore.changeAntiMask,
+    focusAntiMask: FiveLettersStore.focusAntiMask
   };
 };
 
 AntiMask.propTypes = {
   mask: PropTypes.object,
-  setMask: PropTypes.func
+  changeAntiMask: PropTypes.func,
+  focusAntiMask: PropTypes.func
 };
 
-export default magic(AntiMask, {store: mapStore});
+export default magic(AntiMask, {store: mapStore, styles: s});

@@ -1,35 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {magic} from '@utils';
+import s from './style.scss';
 
 const Words = ({show, matchWords}) => {
-  const wordsBlockStyle = {
-    display: 'flex',
-    gap: 10,
-    flexFlow: 'row wrap',
-    maxWidth: '400px',
-    maxHeight: '350px',
-    overflowX: 'hidden',
-    overflowY: 'scroll',
-    fontFamily: 'monospace',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 20
-  };
-
   if (!show) {
     return null;
   }
 
   return (
     <React.Fragment>
-      <div>
+      <p>
         {`Найдено слов: ${matchWords.length}`}
-      </div>
-      <div
-        style={wordsBlockStyle}
-        className={'no-scrollbar'}
-      >
+      </p>
+      <div className={s.words}>
         {
           matchWords.map((word) => (
             <h3 key={word}>
@@ -54,4 +38,4 @@ Words.propTypes = {
   matchWords: PropTypes.arrayOf(PropTypes.string)
 };
 
-export default magic(Words, {store: mapStore});
+export default magic(Words, {store: mapStore, styles: s});
