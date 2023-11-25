@@ -1,6 +1,7 @@
 const path = require('path');
 const postcss = require('postcss');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
@@ -17,6 +18,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'main.js'
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin()
+    ]
   },
   plugins: [
     new Dotenv(),
