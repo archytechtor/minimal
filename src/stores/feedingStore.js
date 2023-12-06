@@ -151,6 +151,12 @@ class FeedingStore {
     }
   };
 
+  refresh = () => {
+    this.setDefault();
+
+    return this.getRecords();
+  };
+
   format = (timestamp) => {
     const dateTimeString = new Date(timestamp).toLocaleString();
     const [date, time] = dateTimeString.split(', ');

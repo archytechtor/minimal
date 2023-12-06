@@ -18,6 +18,23 @@ const msToTime = (duration) => {
   };
 };
 
+const converter = (string) => [...string]
+  .map((symbol) => nums[symbol] ?? symbol)
+  .join('');
+
+const nums = {
+  '0': '🯰',
+  '1': '🯱',
+  '2': '🯲',
+  '3': '🯳',
+  '4': '🯴',
+  '5': '🯵',
+  '6': '🯶',
+  '7': '🯷',
+  '8': '🯸',
+  '9': '🯹'
+};
+
 export {
   magic,
   calculatePosition,
@@ -28,5 +45,6 @@ export {
   hasValue,
   msToTime,
   leadingZero,
-  getPluralForm
+  getPluralForm,
+  converter
 };

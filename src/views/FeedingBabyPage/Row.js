@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {magic} from '@utils';
+import {magic, converter} from '@utils';
 import s from './style.scss';
-import {Button, Icon} from '@ui';
+import {Icon} from '@ui';
 
 const Row = ({id, date, time, removeRecord}) => (
   <div className={s.row}>
-    <p>
-      {date}
+    <p className={s.text}>
+      {converter(date)}
     </p>
-    <p>
-      {time}
+    <p className={s.text}>
+      {converter(time)}
     </p>
-    <Button
+    <Icon
+      type={'solid'}
+      name={'trash'}
       color={'red'}
       onClick={() => removeRecord(id)}
-      icon={<Icon type={'solid'} name={'trash'} />}
+      className={s.remove}
     />
   </div>
 );

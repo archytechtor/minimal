@@ -6,7 +6,7 @@ import Date from './Fields/Date';
 import Time from './Fields/Time';
 import {Button, Icon} from '@ui';
 
-const Control = ({setDefault, saveRecord}) => {
+const Control = ({setDefault, saveRecord, refresh}) => {
   React.useEffect(() => {
     setDefault();
   }, []);
@@ -17,7 +17,7 @@ const Control = ({setDefault, saveRecord}) => {
       <Time />
       <Button
         color={'deepblue'}
-        onClick={setDefault}
+        onClick={refresh}
         icon={<Icon type={'solid'} name={'arrow-rotate-right'} />}
       >
         {'Сохранить'}
@@ -36,13 +36,15 @@ const Control = ({setDefault, saveRecord}) => {
 const mapStore = ({FeedingStore}) => {
   return {
     setDefault: FeedingStore.setDefault,
-    saveRecord: FeedingStore.saveRecord
+    saveRecord: FeedingStore.saveRecord,
+    refresh: FeedingStore.refresh
   };
 };
 
 Control.propTypes = {
   setDefault: PropTypes.func,
-  saveRecord: PropTypes.func
+  saveRecord: PropTypes.func,
+  refresh: PropTypes.func
 };
 
 export default magic(Control, {store: mapStore, styles: s});

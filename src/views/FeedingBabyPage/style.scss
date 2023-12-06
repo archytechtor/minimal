@@ -77,13 +77,27 @@
         align-items: center;
         border-radius: 5px;
         gap: 10px;
-        font-weight: bold;
-        font-size: 1.2rem;
         padding: 5px 10px;
         width: 100%;
+        height: 50px;
+        font-family: 'Noto Sans Symbols 2', 'Montserrat', sans-serif;
+        font-size: 24px;
+
+        .text {
+          max-height: 34px;
+        }
+
+        .remove {
+          cursor: pointer;
+
+          &:hover > svg > path{
+            color: $red-main !important;
+          }
+        }
 
         &:nth-child(odd) {
           background: $white-5;
+          color: $white;
         }
       }
     }
