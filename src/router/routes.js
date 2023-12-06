@@ -6,7 +6,9 @@ import {
   NotFoundPage,
   UiComponentsPage,
   ZemsCoursePage,
-  FiveLettersPage
+  FiveLettersPage,
+  MotivationPage,
+  FeedingBabyPage
 } from '@views';
 
 const authRoutes = [
@@ -21,6 +23,14 @@ const authRoutes = [
   {
     path: ROUTES.ZEMS_COURSE,
     element: <ZemsCoursePage />
+  },
+  {
+    path: ROUTES.MOTIVATION,
+    element: <MotivationPage />
+  },
+  {
+    path: ROUTES.FEEDING_BABY,
+    element: <FeedingBabyPage />
   }
 ];
 

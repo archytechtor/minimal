@@ -5,6 +5,7 @@ import {
 } from 'firebase/auth';
 import {
   addDoc,
+  setDoc,
   getDoc,
   getDocs,
   updateDoc,
@@ -18,6 +19,8 @@ import {
   writeBatch
 } from 'firebase/firestore';
 import {message} from '@ui';
+
+// TODO: нужно отрефакторить это говно (как минимум раскидать по файлам и накидать JSDoc)
 
 const signUp = async(email, password) => {
   // убрать заглушку при релизе
@@ -59,6 +62,9 @@ const create = async(collectionName, data, key) => {
   }
 };
 
+const set = (collectionName, id, data) =>
+  setDoc(doc(db, collectionName, id), data);
+
 const get = async(collectionName, id) => {
   const document = await getDoc(doc(db, collectionName, id));
 
@@ -72,11 +78,35 @@ const get = async(collectionName, id) => {
   return null;
 };
 
+const getAll = async(collectionName) => {
+  const {docs} = await getDocs(query(collection(db, collectionName)));
+
+  return docs.map((document) => {
+    return {
+      id: document.id,
+      ...document.data()
+    };
+  });
+};
+
 const update = (collectionName, id, data) =>
   updateDoc(doc(db, collectionName, id), data);
 
-const remove = (collectionName, id) =>
+const removeById = (collectionName, id) =>
   deleteDoc(doc(db, collectionName, id));
+
+const remove = async(collectionName, filter) => {
+  const docSnap = await getDocs(
+    query(
+      collection(db, collectionName),
+      ...(filter || []).map(({field, op, value}) => where(field, op, value))
+    )
+  );
+
+  docSnap.forEach(({ref}) => {
+    deleteDoc(ref);
+  });
+};
 
 const search = async(collectionName, options = {}) => {
   const {
@@ -127,8 +157,11 @@ export {
   signIn,
   create,
   get,
+  getAll,
   update,
+  set,
   remove,
+  removeById,
   search,
   stream
 };

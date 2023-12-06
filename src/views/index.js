@@ -4,6 +4,8 @@ import NotFoundPage from './NotFoundPage';
 import UiComponentsPage from './UiComponentsPage';
 import ZemsCoursePage from './ZemsCoursePage';
 import FiveLettersPage from './FiveLettersPage';
+import MotivationPage from './MotivationPage';
+import FeedingBabyPage from './FeedingBabyPage';
 
 export {
   MainPage,
@@ -11,5 +13,7 @@ export {
   NotFoundPage,
   UiComponentsPage,
   ZemsCoursePage,
-  FiveLettersPage
+  FiveLettersPage,
+  MotivationPage,
+  FeedingBabyPage
 };

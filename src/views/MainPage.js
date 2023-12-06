@@ -15,6 +15,12 @@ const MainPage = ({logOut}) => (
     <Link to={'/five_letters'}>
       {'5 букв'}
     </Link>
+    <Link to={'/motivation'}>
+      {'Мотивация'}
+    </Link>
+    <Link to={'/feeding_baby'}>
+      {'Кормление ребёнка'}
+    </Link>
     <Button onClick={logOut}>
       {'Выйти'}
     </Button>

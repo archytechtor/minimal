@@ -5,5 +5,7 @@
   "MAIN": "/",
   "UI": "/ui",
   "ZEMS_COURSE": "/zems_course",
-  "FIVE_LETTERS": "/five_letters"
+  "FIVE_LETTERS": "/five_letters",
+  "MOTIVATION": "/motivation",
+  "FEEDING_BABY": "/feeding_baby"
 }
