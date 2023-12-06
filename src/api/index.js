@@ -24,7 +24,7 @@ import {message} from '@ui';
 
 const signUp = async(email, password) => {
   // убрать заглушку при релизе
-  if (email !== process.env.EMAIL) {
+  if (true) {
     return message({
       type: 'error',
       message: 'В регистрации нового пользователя отказано'
