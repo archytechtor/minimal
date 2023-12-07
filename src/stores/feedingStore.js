@@ -32,6 +32,7 @@ class FeedingStore {
       hasErrors: computed,
       timestampFromValues: computed,
       lastFeeding: computed,
+      feedingTimeWithOffset: computed,
 
       setValues: action,
       setValue: action,
@@ -79,6 +80,25 @@ class FeedingStore {
     const pluralMinutes = getPluralForm(minutes, ['минуту', 'минуты', 'минут']);
 
     return `${leadingZero(hours)} ${pluralHours} ${leadingZero(minutes)} ${pluralMinutes}`;
+  }
+
+  get feedingTimeWithOffset() {
+    return this.feedingTime.reduce((acc, current, idx) => {
+      const prev = acc[idx - 1];
+
+      if (!prev) {
+        acc.push({...current, offset: null});
+      } else {
+        const {hours, minutes} = msToTime(prev.id - current.id);
+
+        acc.push({
+          ...current,
+          offset: `+ ${leadingZero(hours)} : ${leadingZero(minutes)}`
+        });
+      }
+
+      return acc;
+    }, []);
   }
 
   get hasErrors() {

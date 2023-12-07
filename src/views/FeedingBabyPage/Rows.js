@@ -4,20 +4,21 @@ import {magic} from '@utils';
 import Row from './Row';
 import s from '@views/FeedingBabyPage/style.scss';
 
-const Rows = ({feedingTime}) => {
-  if (!feedingTime.length) {
+const Rows = ({feedingTimeWithOffset}) => {
+  if (!feedingTimeWithOffset.length) {
     return 'Здесь пока ещё нет записей';
   }
 
   return (
     <div className={s.rows}>
       {
-        feedingTime.map(({id, date, time}) => (
+        feedingTimeWithOffset.map(({id, date, time, offset}) => (
           <Row
             key={id}
             id={id}
             date={date}
             time={time}
+            offset={offset}
           />
         ))
       }
@@ -27,12 +28,12 @@ const Rows = ({feedingTime}) => {
 
 const mapStore = ({FeedingStore}) => {
   return {
-    feedingTime: FeedingStore.feedingTime
+    feedingTimeWithOffset: FeedingStore.feedingTimeWithOffset
   };
 };
 
 Rows.propTypes = {
-  feedingTime: PropTypes.array
+  feedingTimeWithOffset: PropTypes.array
 };
 
 export default magic(Rows, {store: mapStore, styles: s});

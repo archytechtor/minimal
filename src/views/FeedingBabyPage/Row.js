@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {magic, converter} from '@utils';
-import s from './style.scss';
 import {Icon} from '@ui';
+import s from './style.scss';
 
-const Row = ({id, date, time, removeRecord}) => (
+const Row = ({id, date, time, offset, removeRecord}) => (
   <div className={s.row}>
-    <p className={s.text}>
-      {converter(date)}
-    </p>
-    <p className={s.text}>
-      {converter(time)}
-    </p>
+    <div className={s.time}>
+      <p className={s.text}>
+        {converter(date)}
+      </p>
+      <p className={s.text}>
+        {converter(time)}
+      </p>
+    </div>
+    <div className={s.offset}>
+      {offset}
+    </div>
     <Icon
       type={'solid'}
       name={'trash'}
@@ -32,6 +37,7 @@ Row.propTypes = {
   id: PropTypes.string,
   date: PropTypes.string,
   time: PropTypes.string,
+  offset: PropTypes.string,
   removeRecord: PropTypes.func
 };
 

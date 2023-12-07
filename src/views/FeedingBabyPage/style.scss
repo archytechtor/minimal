@@ -82,6 +82,21 @@
         height: 50px;
         font-family: 'Noto Sans Symbols 2', 'Montserrat', sans-serif;
         font-size: 24px;
+        position: relative;
+
+        .time {
+          display: flex;
+          gap: 20px;
+        }
+
+        .offset {
+          position: absolute;
+          top: -40px;
+          right: 50px;
+          color: $green-light;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 16px;
+        }
 
         .text {
           max-height: 34px;
@@ -97,7 +112,6 @@
 
         &:nth-child(odd) {
           background: $white-5;
-          color: $white;
         }
       }
     }
