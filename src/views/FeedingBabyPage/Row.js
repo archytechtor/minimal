@@ -8,7 +8,7 @@ const Row = ({id, date, time, offset, removeRecord}) => (
   <div className={s.row}>
     <div className={s.time}>
       <p className={s.text}>
-        {converter(date)}
+        {converter(date).replace(/(.*)\.(.*)\.(.{4})(.*)/, '$1.$2.$4')}
       </p>
       <p className={s.text}>
         {converter(time).replace(/(.*):(.*):(.*)/, '$1:$2')}
