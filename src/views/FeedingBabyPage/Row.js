@@ -11,7 +11,7 @@ const Row = ({id, date, time, offset, removeRecord}) => (
         {converter(date)}
       </p>
       <p className={s.text}>
-        {converter(time)}
+        {converter(time).replace(/(.*):(.*):(.*)/, '$1:$2')}
       </p>
     </div>
     <div className={s.offset}>

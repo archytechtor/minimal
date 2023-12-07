@@ -18,17 +18,15 @@ const Control = ({setDefault, saveRecord, refresh}) => {
       <Button
         color={'deepblue'}
         onClick={refresh}
-        icon={<Icon type={'solid'} name={'arrow-rotate-right'} />}
-      >
-        {'Сохранить'}
-      </Button>
+        icon={<Icon type={'solid'} name={'arrow-rotate-right'} size={22} />}
+        size={45}
+      />
       <Button
         color={'green'}
         onClick={saveRecord}
-        icon={<Icon type={'solid'} name={'plus'} />}
-      >
-        {'Сохранить'}
-      </Button>
+        icon={<Icon type={'solid'} name={'plus'} size={22} />}
+        size={45}
+      />
     </div>
   );
 };

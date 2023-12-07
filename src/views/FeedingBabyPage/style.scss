@@ -12,7 +12,7 @@
 
   .control {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
 
@@ -86,13 +86,13 @@
 
         .time {
           display: flex;
-          gap: 20px;
+          gap: 30px;
         }
 
         .offset {
           position: absolute;
           top: -40px;
-          right: 50px;
+          right: 60px;
           color: $green-light;
           font-family: 'Montserrat', sans-serif;
           font-size: 16px;
@@ -119,12 +119,12 @@
 }
 
 .input {
-  height: 36px;
-  width: 36px;
+  height: 45px;
+  width: 45px;
   border-radius: 5px;
   border: none;
   text-align: center;
-  font-size: 18px;
+  font-size: 22px;
   text-transform: uppercase;
   color: $text-main;
   background: $like-white-10;

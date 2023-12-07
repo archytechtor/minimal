@@ -8,8 +8,9 @@ const Time = () => (
     <Field name={'hour'} />
     <p className={s.sign}>{':'}</p>
     <Field name={'minute'} />
-    <p className={s.sign}>{':'}</p>
-    <Field name={'second'} />
+    {/*Скрыл секунды за ненадобностью*/}
+    {/*<p className={s.sign}>{':'}</p>*/}
+    {/*<Field name={'second'} />*/}
   </div>
 );
 

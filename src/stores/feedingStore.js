@@ -76,10 +76,25 @@ class FeedingStore {
     const now = new Date().getTime();
     const {hours, minutes} = msToTime(now - lastFeedingTime.id);
 
-    const pluralHours = getPluralForm(hours, ['час', 'часа', 'часов']);
-    const pluralMinutes = getPluralForm(minutes, ['минуту', 'минуты', 'минут']);
+    const lasFeeding = [];
 
-    return `${leadingZero(hours)} ${pluralHours} ${leadingZero(minutes)} ${pluralMinutes}`;
+    if (hours) {
+      const pluralHours = getPluralForm(hours, ['час', 'часа', 'часов']);
+
+      lasFeeding.push(`${hours} ${pluralHours}`);
+    }
+
+    if (minutes) {
+      const pluralMinutes = getPluralForm(minutes, ['минуту', 'минуты', 'минут']);
+
+      lasFeeding.push(`${minutes} ${pluralMinutes}`);
+    }
+
+    if (!hours && !minutes) {
+      lasFeeding.push('несколько секунд')
+    }
+
+    return lasFeeding.join(' ');
   }
 
   get feedingTimeWithOffset() {
