@@ -67,7 +67,8 @@ class FeedingStore {
   }
 
   get lastFeeding() {
-    const [lastFeedingTime] = this.feedingTime;
+    const lastIndex = this.feedingTime.length - 1;
+    const lastFeedingTime = this.feedingTime[lastIndex];
 
     if (!lastFeedingTime) {
       return '';
@@ -91,29 +92,32 @@ class FeedingStore {
     }
 
     if (!hours && !minutes) {
-      lasFeeding.push('несколько секунд')
+      lasFeeding.push('несколько секунд');
     }
 
     return lasFeeding.join(' ');
   }
 
   get feedingTimeWithOffset() {
-    return this.feedingTime.reduce((acc, current, idx) => {
-      const prev = acc[idx - 1];
+    return this.feedingTime
+      .map((current, idx) => {
+        const prev = this.feedingTime[idx - 1];
 
-      if (!prev) {
-        acc.push({...current, offset: null});
-      } else {
-        const {hours, minutes} = msToTime(prev.id - current.id);
+        if (!prev) {
+          return {
+            ...current,
+            offset: null
+          };
+        }
 
-        acc.push({
+        const {hours, minutes} = msToTime(current.id - prev.id);
+
+        return {
           ...current,
           offset: `+ ${leadingZero(hours)} : ${leadingZero(minutes)}`
-        });
-      }
-
-      return acc;
-    }, []);
+        };
+      })
+      .reverse();
   }
 
   get hasErrors() {
@@ -147,7 +151,7 @@ class FeedingStore {
   };
 
   setFeedingTime = (feedingTime) => {
-    this.feedingTime = feedingTime.sort((a, b) => b.id - a.id);
+    this.feedingTime = feedingTime.sort((a, b) => a.id - b.id);
   };
 
   // HANDLERS AND FORMATTING

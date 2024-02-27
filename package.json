@@ -8,8 +8,7 @@
     "start": "webpack-dev-server --mode=development --open --hot",
     "build": "webpack --mode=production",
     "lint": "eslint --max-warnings 0 --config ./.eslintrc.json --ignore-path ./.eslintignore ./",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && gh-pages -d build"
   },
   "author": "archytechtor",
   "license": "ISC",
@@ -29,7 +28,7 @@
     "babel-loader": "9.1.0",
     "classnames": "2.3.2",
     "css-loader": "6.7.2",
-    "dotenv-webpack": "^8.0.1",
+    "dotenv-webpack": "8.0.1",
     "eslint": "8.28.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.5.0",
