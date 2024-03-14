@@ -80,7 +80,13 @@ const get = async(collectionName, id) => {
 };
 
 const getAll = async(collectionName) => {
-  const {docs} = await getDocs(query(collection(db, collectionName), orderBy('id', 'desc'), limit(100)));
+  const {docs} = await getDocs(
+    query(
+      collection(db, collectionName),
+      orderBy('id', 'desc'),
+      limit(100)
+    )
+  );
 
   return docs.map((document) => document.data());
 };
