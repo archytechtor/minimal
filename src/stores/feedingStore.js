@@ -221,10 +221,10 @@ class FeedingStore {
       return;
     }
 
-    const id = `${this.timestampFromValues}`;
+    const id = this.timestampFromValues;
     const newData = this.format(this.timestampFromValues);
 
-    await set('feedingTime', id, newData);
+    await set('feedingTime', `${id}`, {id, ...newData});
 
     this.setFeedingTime([
       ...feedingTime.filter((item) => item.id !== id),
@@ -236,7 +236,7 @@ class FeedingStore {
   };
 
   removeRecord = async(id) => {
-    await removeById('feedingTime', id);
+    await removeById('feedingTime', `${id}`);
 
     const {feedingTime} = this;
 

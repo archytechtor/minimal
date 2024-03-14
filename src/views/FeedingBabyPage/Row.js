@@ -34,7 +34,7 @@ const mapStore = ({FeedingStore}) => {
 };
 
 Row.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   date: PropTypes.string,
   time: PropTypes.string,
   offset: PropTypes.string,
